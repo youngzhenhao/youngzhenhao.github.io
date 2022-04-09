@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.1.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>Shell - HiYOUNG</title>
+
+  
+
+  
+    <meta name="description" content="Shell 脚本（shell script），是一种为 shell 编写的脚本程序。 shell和shell script是两个不同的概念。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell">
+<meta property="og:url" content="https://youngzhenhao.github.io/2022/04/09/Shell/index.html">
+<meta property="og:site_name" content="HiYOUNG">
+<meta property="og:description" content="Shell 脚本（shell script），是一种为 shell 编写的脚本程序。 shell和shell script是两个不同的概念。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-09T07:19:23.000Z">
+<meta property="article:modified_time" content="2022-04-09T10:54:14.230Z">
+<meta property="article:author" content="youngzhenhao">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/pojun.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">HiYOUNG</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">便笺</a><a class="nav-item" href="/more/">更多</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell-%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="toc-text">Shell 解析器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell-%E8%84%9A%E6%9C%AC%E5%85%A5%E9%97%A8"><span class="toc-text">Shell 脚本入门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shell%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-text">Shell中的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%8F%98%E9%87%8F"><span class="toc-text">系统变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-text">自定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%8F%98%E9%87%8F"><span class="toc-text">特殊变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F-n"><span class="toc-text">变量$n</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-text">变量$#</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F-%EF%BC%8C"><span class="toc-text">变量$*，$@</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F-1"><span class="toc-text">变量$?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="toc-text">条件判断</span></a></li></ol></div></div></div>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-09T07:19:23.000Z">2022-04-09</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>Shell 脚本</span></h1>
+<p>Shell 脚本（shell script），是一种为 shell 编写的脚本程序。</p>
+<p><code>shell</code>和<code>shell script</code>是两个不同的概念。</p>
+<span id="more"></span>
+
+<h2 id="Shell-解析器"><a href="#Shell-解析器" class="headerlink" title="Shell 解析器"></a>Shell 解析器</h2><ol>
+<li>解析器有</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~$ sudo <span class="built_in">cat</span> /etc/shells </span><br><span class="line"><span class="comment"># /etc/shells: valid login shells</span></span><br><span class="line">/bin/sh</span><br><span class="line">/bin/dash</span><br><span class="line">/bin/bash</span><br><span class="line">/bin/rbash</span><br></pre></td></tr></table></figure>
+
+<p><code>she</code>之后按<code>tab</code>可以补全为<code>shells</code></p>
+<p><code>sudo</code>命令以系统管理者的身份执行指令</p>
+<ol start="2">
+<li>之间关系</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/bin$ ll | grep bash</span><br><span class="line">-rwxr-xr-x  1 root root 1037528 7月  13  2019 bash*</span><br><span class="line">lrwxrwxrwx  1 root root       4 7月  13  2019 rbash -&gt; bash*</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>默认解析器</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/bin$ <span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="Shell-脚本入门"><a href="#Shell-脚本入门" class="headerlink" title="Shell 脚本入门"></a>Shell 脚本入门</h2><ol>
+<li><p>脚本以 <code>#!/bin/bash</code>开头</p>
+</li>
+<li><p><code>helloworld</code></p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">pwd</span></span><br><span class="line">/home/young/datas</span><br><span class="line"></span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">touch</span> helloworld.sh</span><br><span class="line"></span><br><span class="line">young@ubuntu:~/datas$ vim helloworld</span><br></pre></td></tr></table></figure>
+
+<p>进入<code>vim</code>界面，按<code>i</code>进入插入模式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>按<code>esc</code>，再<code>shift</code>+<code>:</code>，输入<code>wq</code>，写入并退出</p>
+<p>运行结果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ sh helloworld.sh </span><br><span class="line">hello world!</span><br></pre></td></tr></table></figure>
+
+<p>使用 bash 运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ bash helloworld.sh </span><br><span class="line">hello world!</span><br></pre></td></tr></table></figure>
+
+<p>使用绝对路径运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ bash /home/young/datas/helloworld.sh </span><br><span class="line">hello world!</span><br></pre></td></tr></table></figure>
+
+<p>直接运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ ./helloworld.sh</span><br><span class="line">bash: ./helloworld.sh: 权限不够</span><br></pre></td></tr></table></figure>
+
+<p><code>ll</code>是<code>ls -l</code>的一种写法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ ll</span><br><span class="line">总用量 12</span><br><span class="line">drwxrwxr-x  2 young young 4096 4月   9 16:10 ./</span><br><span class="line">drwxr-xr-x 18 young young 4096 4月   9 16:10 ../</span><br><span class="line">-rw-rw-r--  1 young young   33 4月   9 16:10 helloworld.sh</span><br></pre></td></tr></table></figure>
+
+<p>自己执行，权限不够，赋予权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">chmod</span> 777 helloworld.sh </span><br><span class="line"></span><br><span class="line">young@ubuntu:~/datas$ ll</span><br><span class="line">总用量 12</span><br><span class="line">drwxrwxr-x  2 young young 4096 4月   9 16:10 ./</span><br><span class="line">drwxr-xr-x 18 young young 4096 4月   9 16:10 ../</span><br><span class="line">-rwxrwxrwx  1 young young   33 4月   9 16:10 helloworld.sh*</span><br></pre></td></tr></table></figure>
+
+<p>再进行执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ ./helloworld.sh</span><br><span class="line">hello world!</span><br></pre></td></tr></table></figure>
+
+<p>同样可以使用绝对路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ /home/young/datas/helloworld.sh </span><br><span class="line">hello world!</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>多命令处理</li>
+</ol>
+<ul>
+<li>在<code>/home/young/</code>目录下创建一个<code>words.txt</code>，在文件中增加 “I love you”</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">touch</span> batch.sh</span><br><span class="line"></span><br><span class="line">young@ubuntu:~/datas$ vim batch.sh</span><br></pre></td></tr></table></figure>
+
+<p>进入<code>vim</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /home/young/</span><br><span class="line"><span class="built_in">touch</span> words.txt</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;I love you&quot;</span> &gt;&gt; words.txt</span><br></pre></td></tr></table></figure>
+
+<p>直接执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ bash batch.sh </span><br></pre></td></tr></table></figure>
+
+<p>之后转到该目录下，使用<code>cat</code>查看执行结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">cd</span> /home/young</span><br><span class="line"></span><br><span class="line">young@ubuntu:~$ <span class="built_in">cat</span> words.txt</span><br><span class="line">I love you</span><br></pre></td></tr></table></figure>
+
+<h2 id="Shell中的变量"><a href="#Shell中的变量" class="headerlink" title="Shell中的变量"></a>Shell中的变量</h2><h3 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h3><ol>
+<li>常用的系统变量</li>
+</ol>
+<p><code>$HOME</code>、<code>$PWD</code>、<code>$SHELL</code>、<code>$USER</code>等</p>
+<p>查看系统变量的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$HOME</span></span><br><span class="line">/home/young</span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$PWD</span></span><br><span class="line">/home/young</span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br><span class="line">/bin/bash</span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$USER</span></span><br><span class="line">young</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h3><ol>
+<li>基本语法</li>
+</ol>
+<p>定义变量： 变量&#x3D;值</p>
+<p>用<code>set</code>显示当前Shell中所有变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~$ A=1</span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$A</span></span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>等号前后不能用空格</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~$ A = 2</span><br><span class="line">A：未找到命令</span><br><span class="line">young@ubuntu:~$ A= 2</span><br><span class="line">2：未找到命令</span><br><span class="line">young@ubuntu:~$ A =2</span><br><span class="line">A：未找到命令</span><br><span class="line">young@ubuntu:~$ A=2</span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$A</span></span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>撤销变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~$ <span class="built_in">unset</span> A</span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$A</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>静态变量，不能<code>unset</code>，虚拟机重启就消失</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~$ <span class="built_in">readonly</span> B=3</span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$B</span></span><br><span class="line">3</span><br><span class="line">young@ubuntu:~$ <span class="built_in">unset</span> <span class="variable">$B</span></span><br><span class="line">bash: <span class="built_in">unset</span>: `3<span class="string">&#x27;: 不是有效的标识符</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>变量定义规则</li>
+</ol>
+<ul>
+<li>变量名称可以由字母、数字和下划线组成，但是不能以数字开头，环境变量名建议大写。</li>
+<li>等号两侧不能有空格</li>
+<li>在bash中，变量默认类型都是字符串类型，无法直接进行数值运算。</li>
+<li>变量的值如果有空格，需要使用双引号或单引号括起来。</li>
+</ul>
+<ol start="3">
+<li>可把变量提升为全局环境变量，可供其他Shell程序使用</li>
+</ol>
+<p>例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~$ D=<span class="string">&quot;Good luck&quot;</span></span><br><span class="line">young@ubuntu:~$ <span class="built_in">echo</span> <span class="variable">$D</span></span><br><span class="line">Good luck</span><br><span class="line">young@ubuntu:~$ <span class="built_in">cd</span> datas</span><br><span class="line">young@ubuntu:~/datas$ vim helloworld.sh </span><br></pre></td></tr></table></figure>
+
+<p>进入<code>vim</code>，添加<code>echo $D</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;hello world!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$D</span></span><br></pre></td></tr></table></figure>
+
+<p>运行，并未执行<code>echo $D</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ ./helloworld.sh </span><br><span class="line">hello world!</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用<code>export</code>使变量全局有效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">export</span> D</span><br><span class="line">young@ubuntu:~/datas$ ./helloworld.sh </span><br><span class="line">hello world!</span><br><span class="line">Good luck</span><br></pre></td></tr></table></figure>
+
+<h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><h4 id="变量-n"><a href="#变量-n" class="headerlink" title="变量$n"></a>变量<code>$n</code></h4><ol>
+<li>基本语法</li>
+</ol>
+<p><code>n</code>为数字，<code>$0</code>代表该脚本名称<br><code>$1</code>-<code>$9</code>代表第一到第九个参数<br>十以上的参数需要用大括号包含，如<code>$&#123;10&#125;</code></p>
+<p>实例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">touch</span> parameter.sh</span><br><span class="line">young@ubuntu:~/datas$ vim parameter.sh </span><br></pre></td></tr></table></figure>
+
+<p>进入<code>vim</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>$0</code>属于这个命令本身</p>
+<p><code>$1</code>，<code>$2</code>，<code>$3</code>最多输出三个参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ bash parameter.sh </span><br><span class="line">parameter.sh   </span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you</span><br><span class="line">parameter.sh you  </span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you love</span><br><span class="line">parameter.sh you love </span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you love her</span><br><span class="line">parameter.sh you love her</span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you love her why</span><br><span class="line">parameter.sh you love her</span><br></pre></td></tr></table></figure>
+
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量$#"></a>变量<code>$#</code></h4><p>获取所有输入参数个数，常用于循环</p>
+<p>例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ vim parameter.sh </span><br></pre></td></tr></table></figure>
+
+<p>进入<code>vim</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ bash parameter.sh </span><br><span class="line">parameter.sh   </span><br><span class="line">0</span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you</span><br><span class="line">parameter.sh you  </span><br><span class="line">1</span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you love</span><br><span class="line">parameter.sh you love </span><br><span class="line">2</span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you love her</span><br><span class="line">parameter.sh you love her</span><br><span class="line">3</span><br><span class="line">young@ubuntu:~/datas$ bash parameter.sh you love her why</span><br><span class="line">parameter.sh you love her</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<h4 id="变量-，"><a href="#变量-，" class="headerlink" title="变量$*，$@"></a>变量<code>$*</code>，<code>$@</code></h4><p><code>$*</code>这个变量代表命令行中所有的参数<br>并且<code>$*</code>把所有的参数看成一个整体</p>
+<p><code>$@</code>这个变量也代表命令行中所有的参数<br>但是<code>$@</code>把每个参数区分对待</p>
+<p>例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ vim parameter.sh</span><br></pre></td></tr></table></figure>
+
+<p>进入<code>vim</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br><span class="line"><span class="built_in">echo</span> $*</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ bash parameter.sh you love her</span><br><span class="line">parameter.sh you love her</span><br><span class="line">3</span><br><span class="line">you love her</span><br><span class="line">you love her</span><br></pre></td></tr></table></figure>
+
+<h4 id="变量-1"><a href="#变量-1" class="headerlink" title="变量$?"></a>变量<code>$?</code></h4><p>最后一次执行的命令的返回状态<br>如果这个变量的值为<code>0</code>，证明上一个命令正确执行<br>如果这个变量的值为<code>非0</code>，则证明上一个命令执行不正确了<br>具体是哪个数，由命令自己来决定</p>
+<p>例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ ./helloworld.sh </span><br><span class="line">hello world!</span><br><span class="line">Good luck</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>返回<code>0</code>，则执行成功</p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ol>
+<li>基本语法</li>
+</ol>
+<ul>
+<li><code>$((运算式))</code>或<code>$[运算式]</code></li>
+<li><code>expr</code> <code>+</code>，<code>-</code>，<code>\*</code>，<code>/</code>，<code>%</code><br>加，减，乘，除，取余<br><code>expr</code>和运算符间要有空格</li>
+</ul>
+<p>实例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">expr</span> 3+2</span><br><span class="line">3+2</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">expr</span> 3 +2</span><br><span class="line"><span class="built_in">expr</span>: 语法错误</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">expr</span> 3 + 2</span><br><span class="line">5</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">expr</span> 3 - 2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>计算<code>(3+2)*4</code></p>
+<ul>
+<li>采用<code>expr</code>一步完成计算</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ <span class="built_in">expr</span> `<span class="built_in">expr</span> 3 + 2` \* 4</span><br><span class="line">20</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>采用<code>$[运算式]</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ s=$[(2+3)*4]</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> <span class="variable">$s</span></span><br><span class="line">20</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><p><code>[ condition ]</code></p>
+<p><code>condition</code>前后要有空格</p>
+<p>条件非空即为<code>true</code>，<code>[ young ]</code>为<code>true</code>，<code>[]</code>为<code>false</code></p>
+<ul>
+<li>两个整数之间比较</li>
+</ul>
+<p><code>=</code> 字符串比较<br><code>-lt</code> 小于（less than）<br><code>-le</code> 小于等于（less equal）<br><code>-eq</code> 等于（equal）<br><code>-gt</code> 大于（greater than）<br><code>-ge</code> 大于等于（greater equal）<br><code>-ne</code> 不等于（Not equal）</p>
+<ul>
+<li>按照文件权限进行判断</li>
+</ul>
+<p><code>-r</code> 有读的权限（read）<br><code>-w</code> 有写的权限（write）<br><code>-x</code> 有执行的权限（execute）</p>
+<ul>
+<li>按照文件类型进行判断</li>
+</ul>
+<p><code>-f</code> 文件存在并且是一个常规的文件（file）<br><code>-e</code> 文件存在（existence）<br><code>-d</code> 文件存在并是一个目录（directory）</p>
+<ul>
+<li>多条件判断</li>
+</ul>
+<p><code>&amp;&amp;</code> 表示前一条命令执行成功时，才执行后一条命令<br><code>||</code> 表示上一条命令执行失败后，才执行下一条命令</p>
+<p>例如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ [ young ]</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> $?</span><br><span class="line">0</span><br><span class="line">young@ubuntu:~/datas$ [ 23 -ge 22 ]</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> $?</span><br><span class="line">0</span><br><span class="line">young@ubuntu:~/datas$ [ 23 -le 22 ]</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<p>判断<code>helloworld.sh</code>是由具有写权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ [ -w helloworld.sh ]</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>判断文件是否存在</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ [ -e /home/young/123.txt ]</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> $?</span><br><span class="line">1</span><br><span class="line">young@ubuntu:~/datas$ [ -e /home/young/words.txt ]</span><br><span class="line">young@ubuntu:~/datas$ <span class="built_in">echo</span> $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p>多条件判断 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">young@ubuntu:~/datas$ [ condition ] &amp;&amp; <span class="built_in">echo</span> OK || <span class="built_in">echo</span> notOK</span><br><span class="line">OK</span><br><span class="line">young@ubuntu:~/datas$ [ condition ] &amp;&amp; [ ] || <span class="built_in">echo</span> notOK</span><br><span class="line">notOK</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/09/postTest/">postTest<span class="note">较早</span></a><div class="line"></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://youngzhenhao.github.io/">@youngzhenhao</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
