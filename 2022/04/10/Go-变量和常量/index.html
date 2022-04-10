@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.1.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>Go 变量和常量 - HiYOUNG</title>
+
+  
+
+  
+    <meta name="description" content="变量和常量是编程中必不可少的部分，也是很好理解的一部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go 变量和常量">
+<meta property="og:url" content="https://youngzhenhao.github.io/2022/04/10/Go-%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F/index.html">
+<meta property="og:site_name" content="HiYOUNG">
+<meta property="og:description" content="变量和常量是编程中必不可少的部分，也是很好理解的一部分。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-10T12:24:39.000Z">
+<meta property="article:modified_time" content="2022-04-10T12:48:08.562Z">
+<meta property="article:author" content="youngzhenhao">
+<meta property="article:tag" content="Golang">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/pojun.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">HiYOUNG</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">便笺</a><a class="nav-item" href="/more/">更多</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6%E4%B8%8E%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">标识符与关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="toc-text">标识符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-text">关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A5%E5%8E%86"><span class="toc-text">变量的来历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="toc-text">变量类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="toc-text">变量声明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E5%A3%B0%E6%98%8E"><span class="toc-text">标准声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="toc-text">批量声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">变量的初始化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F"><span class="toc-text">常量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iota"><span class="toc-text">iota</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%B8%B8%E8%A7%81%E7%9A%84iota%E7%A4%BA%E4%BE%8B"><span class="toc-text">几个常见的iota示例:</span></a></li></ol></li></ol></li></ol></div></div></div>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Golang/">Golang</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-10T12:24:39.000Z">2022-04-10</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>Go 变量和常量</span></h1>
+<p>变量和常量是编程中必不可少的部分，也是很好理解的一部分。</p>
+<span id="more"></span>
+
+<h2 id="标识符与关键字"><a href="#标识符与关键字" class="headerlink" title="标识符与关键字"></a>标识符与关键字</h2><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>在编程语言中标识符就是程序员定义的具有特殊意义的词，比如变量名、常量名、函数名等等。 Go语言中标识符由字母数字和<code>_</code>(下划线）组成，并且只能以字母和<code>_</code>开头。 举几个例子：<code>abc</code>, <code>_</code>, <code>_123</code>, <code>a123</code>。</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>关键字是指编程语言中预先定义好的具有特殊含义的标识符。 关键字和保留字都不建议用作变量名。</p>
+<p>Go语言中有25个关键字：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">break</span>        <span class="keyword">default</span>      <span class="function"><span class="keyword">func</span>         <span class="title">interface</span>    <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>         <span class="keyword">defer</span>        <span class="keyword">go</span>           <span class="keyword">map</span>          <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>         <span class="keyword">else</span>         <span class="keyword">goto</span>         <span class="keyword">package</span>      <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>        <span class="keyword">fallthrough</span>  <span class="keyword">if</span>           <span class="keyword">range</span>        <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>     <span class="keyword">for</span>          <span class="keyword">import</span>       <span class="keyword">return</span>       <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
+
+<p>此外，Go语言中还有37个保留字。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Constants:    <span class="literal">true</span>  <span class="literal">false</span>  <span class="literal">iota</span>  <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">    Types:    <span class="type">int</span>  <span class="type">int8</span>  <span class="type">int16</span>  <span class="type">int32</span>  <span class="type">int64</span>  </span><br><span class="line">              <span class="type">uint</span>  <span class="type">uint8</span>  <span class="type">uint16</span>  <span class="type">uint32</span>  <span class="type">uint64</span>  <span class="type">uintptr</span></span><br><span class="line">              <span class="type">float32</span>  <span class="type">float64</span>  <span class="type">complex128</span>  <span class="type">complex64</span></span><br><span class="line">              <span class="type">bool</span>  <span class="type">byte</span>  <span class="type">rune</span>  <span class="type">string</span>  <span class="type">error</span></span><br><span class="line"></span><br><span class="line">Functions:   <span class="built_in">make</span>  <span class="built_in">len</span>  <span class="built_in">cap</span>  <span class="built_in">new</span>  <span class="built_in">append</span>  <span class="built_in">copy</span>  <span class="built_in">close</span>  <span class="built_in">delete</span></span><br><span class="line">             <span class="built_in">complex</span>  <span class="built_in">real</span>  <span class="built_in">imag</span></span><br><span class="line">             <span class="built_in">panic</span>  <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="变量的来历"><a href="#变量的来历" class="headerlink" title="变量的来历"></a>变量的来历</h3><p>程序运行过程中的数据都是保存在内存中，我们想要在代码中操作某个数据时就需要去内存上找到这个变量，但是如果我们直接在代码中通过内存地址去操作变量的话，代码的可读性会非常差而且还容易出错，所以我们就利用变量将这个数据的内存地址保存起来，以后直接通过这个变量就能找到内存上对应的数据了。</p>
+<h3 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h3><p>变量（Variable）的功能是存储数据。不同的变量保存的数据类型可能会不一样。经过半个多世纪的发展，编程语言已经基本形成了一套固定的类型，常见变量的数据类型有：整型、浮点型、布尔型等。</p>
+<p>Go语言中的每一个变量都有自己的类型，并且变量必须经过声明才能开始使用。</p>
+<h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p>Go语言中的变量需要声明后才能使用，同一作用域内不支持重复声明。 并且Go语言的变量声明后必须使用。</p>
+<h4 id="标准声明"><a href="#标准声明" class="headerlink" title="标准声明"></a>标准声明</h4><p>Go语言的变量声明格式为：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名 变量类型</span><br></pre></td></tr></table></figure>
+
+<p>变量声明以关键字<code>var</code>开头，变量类型放在变量的后面，行尾无需分号。 举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="type">string</span></span><br><span class="line"><span class="keyword">var</span> age <span class="type">int</span></span><br><span class="line"><span class="keyword">var</span> isOk <span class="type">bool</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="批量声明"><a href="#批量声明" class="headerlink" title="批量声明"></a>批量声明</h4><p>每声明一个变量就需要写<code>var</code>关键字会比较繁琐，go语言中还支持批量变量声明：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">    a <span class="type">string</span></span><br><span class="line">    b <span class="type">int</span></span><br><span class="line">    c <span class="type">bool</span></span><br><span class="line">    d <span class="type">float32</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="变量的初始化"><a href="#变量的初始化" class="headerlink" title="变量的初始化"></a>变量的初始化</h4><p>Go语言在声明变量的时候，会自动对变量对应的内存区域进行初始化操作。每个变量会被初始化成其类型的默认值，例如： 整型和浮点型变量的默认值为<code>0</code>。 字符串变量的默认值为<code>空字符串</code>。 布尔型变量默认为<code>false</code>。 切片、函数、指针变量的默认为<code>nil</code>。</p>
+<p>当然我们也可在声明变量的时候为其指定初始值。变量初始化的标准格式如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 变量名 类型 = 表达式</span><br></pre></td></tr></table></figure>
+
+<p>举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name <span class="type">string</span> = <span class="string">&quot;Alice&quot;</span></span><br><span class="line"><span class="keyword">var</span> age <span class="type">int</span> = <span class="number">18</span></span><br></pre></td></tr></table></figure>
+
+<p>或者一次初始化多个变量</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name, age = <span class="string">&quot;Alice&quot;</span>, <span class="number">20</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>类型推导</li>
+</ul>
+<p>有时候我们会将变量的类型省略，这个时候编译器会根据等号右边的值来推导变量的类型完成初始化。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;Alice&quot;</span></span><br><span class="line"><span class="keyword">var</span> age = <span class="number">18</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>短变量声明</li>
+</ul>
+<p>在函数内部，可以使用更简略的 <code>:=</code> 方式声明并初始化变量。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// 全局变量m</span></span><br><span class="line"><span class="keyword">var</span> m = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	n := <span class="number">10</span></span><br><span class="line">	m := <span class="number">200</span> <span class="comment">// 此处声明局部变量m</span></span><br><span class="line">	fmt.Println(m, n)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>匿名变量</li>
+</ul>
+<p>在使用多重赋值时，如果想要忽略某个值，可以使用<code>匿名变量（anonymous variable）</code>。 匿名变量用一个下划线<code>_</code>表示，例如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">foo</span><span class="params">()</span></span> (<span class="type">int</span>, <span class="type">string</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">10</span>, <span class="string">&quot;Alice&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	x, _ := foo()</span><br><span class="line">	_, y := foo()</span><br><span class="line">	fmt.Println(<span class="string">&quot;x=&quot;</span>, x)</span><br><span class="line">	fmt.Println(<span class="string">&quot;y=&quot;</span>, y)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>匿名变量不占用命名空间，不会分配内存，所以匿名变量之间不存在重复声明。 (在Lua等编程语言里，匿名变量也被叫做哑元变量。)</p>
+<p>注意事项：</p>
+<ol>
+<li>函数外的每个语句都必须以关键字开始（<code>var</code>、<code>const</code>、<code>func</code>等）</li>
+<li><code>:=</code>不能使用在函数外。</li>
+</ol>
+<p>3.<code> _</code>多用于占位，表示忽略值。</p>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>相对于变量，常量是恒定不变的值，多用于定义程序运行期间不会改变的那些值。 常量的声明和变量声明非常类似，只是把<code>var</code>换成了<code>const</code>，常量在定义的时候必须赋值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pi = <span class="number">3.1415</span></span><br><span class="line"><span class="keyword">const</span> e = <span class="number">2.7182</span></span><br></pre></td></tr></table></figure>
+
+<p>声明了<code>pi</code>和<code>e</code>这两个常量之后，在整个程序运行期间它们的值都不能再发生变化了。</p>
+<p>多个常量也可以一起声明：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    pi = <span class="number">3.1415</span></span><br><span class="line">    e = <span class="number">2.7182</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>const同时声明多个常量时，如果省略了值则表示和上面一行的值相同。 例如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">    n1 = <span class="number">100</span></span><br><span class="line">    n2</span><br><span class="line">    n3</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中，常量<code>n1</code>、<code>n2</code>、<code>n3</code>的值都是100。</p>
+<h3 id="iota"><a href="#iota" class="headerlink" title="iota"></a>iota</h3><p><code>iota</code>是go语言的常量计数器，只能在常量的表达式中使用。</p>
+<p><code>iota</code>在const关键字出现时将被重置为0。const中每新增一行常量声明将使iota计数一次(iota可理解为const语句块中的行索引)。 使用iota能简化定义，在定义枚举时很有用。</p>
+<p>举个例子：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2        <span class="comment">//1</span></span><br><span class="line">		n3        <span class="comment">//2</span></span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+
+<h4 id="几个常见的iota示例"><a href="#几个常见的iota示例" class="headerlink" title="几个常见的iota示例:"></a>几个常见的iota示例:</h4><p>使用<code>_</code>跳过某些值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2        <span class="comment">//1</span></span><br><span class="line">		_</span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+
+<p><code>iota</code>声明中间插队</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		n1 = <span class="literal">iota</span> <span class="comment">//0</span></span><br><span class="line">		n2 = <span class="number">100</span>  <span class="comment">//100</span></span><br><span class="line">		n3 = <span class="literal">iota</span> <span class="comment">//2</span></span><br><span class="line">		n4        <span class="comment">//3</span></span><br><span class="line">	)</span><br><span class="line">	<span class="keyword">const</span> n5 = <span class="literal">iota</span> <span class="comment">//0</span></span><br></pre></td></tr></table></figure>
+
+<p>定义数量级 （这里的<code>&lt;&lt;</code>表示左移操作，<code>1&lt;&lt;10</code>表示将1的二进制表示向左移10位，也就是由<code>1</code>变成了<code>10000000000</code>，也就是十进制的1024。同理<code>2&lt;&lt;2</code>表示将2的二进制表示向左移2位，也就是由<code>10</code>变成了<code>1000</code>，也就是十进制的8。）</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		_  = <span class="literal">iota</span></span><br><span class="line">		KB = <span class="number">1</span> &lt;&lt; (<span class="number">10</span> * <span class="literal">iota</span>)</span><br><span class="line">		MB = <span class="number">1</span> &lt;&lt; (<span class="number">10</span> * <span class="literal">iota</span>)</span><br><span class="line">		GB = <span class="number">1</span> &lt;&lt; (<span class="number">10</span> * <span class="literal">iota</span>)</span><br><span class="line">		TB = <span class="number">1</span> &lt;&lt; (<span class="number">10</span> * <span class="literal">iota</span>)</span><br><span class="line">		PB = <span class="number">1</span> &lt;&lt; (<span class="number">10</span> * <span class="literal">iota</span>)</span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+
+<p>多个<code>iota</code>定义在一行</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> (</span><br><span class="line">		a, b = <span class="literal">iota</span> + <span class="number">1</span>, <span class="literal">iota</span> + <span class="number">2</span> <span class="comment">//1,2</span></span><br><span class="line">		c, d                      <span class="comment">//2,3</span></span><br><span class="line">		e, f                      <span class="comment">//3,4</span></span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/09/Shell/">Shell script part<span class="note">较早</span></a><div class="line"></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://youngzhenhao.github.io/">@youngzhenhao</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
