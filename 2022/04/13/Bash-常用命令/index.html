@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.1.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>Bash 常用命令 - HiYOUNG</title>
+
+  
+
+  
+    <meta name="description" content="一些 Linux 常用的 bash 命令。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bash 常用命令">
+<meta property="og:url" content="https://youngzhenhao.github.io/2022/04/13/Bash-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="HiYOUNG">
+<meta property="og:description" content="一些 Linux 常用的 bash 命令。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-13T01:30:43.000Z">
+<meta property="article:modified_time" content="2022-04-13T13:48:26.622Z">
+<meta property="article:author" content="youngzhenhao">
+<meta property="article:tag" content="Bash">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/pojun.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">HiYOUNG</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">便笺</a><a class="nav-item" href="/more/">更多</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#export"><span class="toc-text">export</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#whereis"><span class="toc-text">whereis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#which"><span class="toc-text">which</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#clear"><span class="toc-text">clear</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ls"><span class="toc-text">ls</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#touch"><span class="toc-text">touch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cat"><span class="toc-text">cat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#more"><span class="toc-text">more</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#head"><span class="toc-text">head</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tail"><span class="toc-text">tail</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mv"><span class="toc-text">mv</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cp"><span class="toc-text">cp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm"><span class="toc-text">rm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#diff"><span class="toc-text">diff</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chmod"><span class="toc-text">chmod</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzip"><span class="toc-text">gzip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gunzip"><span class="toc-text">gunzip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gzcat"><span class="toc-text">gzcat</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lpr"><span class="toc-text">lpr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lpq"><span class="toc-text">lpq</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lprm"><span class="toc-text">lprm</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">文本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#awk"><span class="toc-text">awk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#grep"><span class="toc-text">grep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wc"><span class="toc-text">wc</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sed"><span class="toc-text">sed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sort"><span class="toc-text">sort</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#uniq"><span class="toc-text">uniq</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cut"><span class="toc-text">cut</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#echo"><span class="toc-text">echo</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fmt"><span class="toc-text">fmt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tr"><span class="toc-text">tr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nl"><span class="toc-text">nl</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#egrep"><span class="toc-text">egrep</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fgrep"><span class="toc-text">fgrep</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C"><span class="toc-text">目录操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mkdir"><span class="toc-text">mkdir</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cd"><span class="toc-text">cd</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pwd"><span class="toc-text">pwd</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH%EF%BC%8C%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%EF%BC%8C%E7%BD%91%E7%BB%9C%E6%93%8D%E4%BD%9C"><span class="toc-text">SSH，系统信息，网络操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ssh"><span class="toc-text">ssh</span></a></li></ol></li></ol></li></ol></div></div></div>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Bash/">Bash</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-13T01:30:43.000Z">2022-04-13</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>Bash 常用命令</span></h1>
+<p>一些 Linux 常用的 bash 命令。</p>
+<span id="more"></span>
+
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h4 id="export"><a href="#export" class="headerlink" title="export"></a><code>export</code></h4><p>显示所有的环境变量</p>
+<p>获取某变量详细信息，<code>echo $VARIABLE_NAME</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="variable">$PWD</span></span><br><span class="line">/home/young</span><br></pre></td></tr></table></figure>
+
+<h4 id="whereis"><a href="#whereis" class="headerlink" title="whereis"></a><code>whereis</code></h4><p>使用系统自动构建的数据库搜索可执行文件，源文件和手册页面<br><code>whereis name</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ whereis bash</span><br><span class="line">bash: /bin/bash /etc/bash.bashrc /usr/share/man/man1/bash.1.gz</span><br></pre></td></tr></table></figure>
+
+<h4 id="which"><a href="#which" class="headerlink" title="which"></a><code>which</code></h4><p>在环境变量PATH指定目录搜索可执行文件<br>此命令将打印可执行文件的完整路径<br><code>which program_name</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> bash</span><br><span class="line">/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="clear"><a href="#clear" class="headerlink" title="clear"></a><code>clear</code></h4><p>清除窗口上的内容</p>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><h4 id="ls"><a href="#ls" class="headerlink" title="ls"></a><code>ls</code></h4><p>列出文件<br><code>ls option</code></p>
+<p><code>-l</code>详细信息<br><code>-t</code>按时间排序<br><code>-a</code>列出所有文件，包括隐藏文件</p>
+<h4 id="touch"><a href="#touch" class="headerlink" title="touch"></a><code>touch</code></h4><p>创建或更新文件<br><code>touch filename</code></p>
+<h4 id="cat"><a href="#cat" class="headerlink" title="cat"></a><code>cat</code></h4><p>在屏幕上显示文本文件<br>复制文本文件<br>合并文本文件<br>创建新的文本文件<br><code>cat filename</code><br><code>cat file1 file2</code><br><code>cat file1 file2 &gt; newcombinedfile</code></p>
+<h4 id="more"><a href="#more" class="headerlink" title="more"></a><code>more</code></h4><p>显示文件的第一部分<br>(用空格移动并键入q以退出）<br><code>more filename</code></p>
+<h4 id="head"><a href="#head" class="headerlink" title="head"></a><code>head</code></h4><p>输出文件的前10行<br><code>head filename</code></p>
+<h4 id="tail"><a href="#tail" class="headerlink" title="tail"></a><code>tail</code></h4><p>输出最后10行文件<br><code>-f</code>在文件增长时输出附加数据<br><code>tail filename</code></p>
+<h4 id="mv"><a href="#mv" class="headerlink" title="mv"></a><code>mv</code></h4><p>将文件从一个位置移动到另一个位置<br><code>mv filename1 filename2</code></p>
+<p><code>filename1</code>文件源路径<br><code>filename2</code>目标路径</p>
+<h4 id="cp"><a href="#cp" class="headerlink" title="cp"></a><code>cp</code></h4><p>将文件从一个位置复制到另一个位置<br><code>cp filename1 filename2</code></p>
+<p><code>filename1</code>文件源路径<br><code>filename2</code>目标路径</p>
+<h4 id="rm"><a href="#rm" class="headerlink" title="rm"></a><code>rm</code></h4><p>删除文件<br><code>rm filename</code><br>添加<code>-rf</code>递归删除目录中的所有内容</p>
+<h4 id="diff"><a href="#diff" class="headerlink" title="diff"></a><code>diff</code></h4><p>比较文件，并列出他们的差异<br><code>diff filename1 filename2</code></p>
+<h4 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a><code>chmod</code></h4><p>更改文件的读取，写入和执行权限<br><code>chmod -options filename</code></p>
+<h4 id="gzip"><a href="#gzip" class="headerlink" title="gzip"></a><code>gzip</code></h4><p>压缩文件<br><code>gzip filename</code></p>
+<h4 id="gunzip"><a href="#gunzip" class="headerlink" title="gunzip"></a><code>gunzip</code></h4><p>解压缩gzip压缩的文件<br><code>gunzip filename</code></p>
+<h4 id="gzcat"><a href="#gzcat" class="headerlink" title="gzcat"></a><code>gzcat</code></h4><p>查看gzip压缩文件，而不需要gunzip它<br><code>gzcat filename</code></p>
+<h4 id="lpr"><a href="#lpr" class="headerlink" title="lpr"></a><code>lpr</code></h4><p>打印文件<br><code>lpr filename</code></p>
+<h4 id="lpq"><a href="#lpq" class="headerlink" title="lpq"></a><code>lpq</code></h4><p>查看打印机队列</p>
+<h4 id="lprm"><a href="#lprm" class="headerlink" title="lprm"></a><code>lprm</code></h4><p>从打印队列移除某些内容<br><code>lprm jobnumber</code></p>
+<h3 id="文本操作"><a href="#文本操作" class="headerlink" title="文本操作"></a>文本操作</h3><h4 id="awk"><a href="#awk" class="headerlink" title="awk"></a><code>awk</code></h4><p>awk是处理文本文件最有用的命令<br>它一行一行地在整个文件上运行<br>默认情况下，它使用空格分隔字段</p>
+<p>最常用的语法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;/search_pattern/ &#123; action_to_take_if_pattern_matches; &#125;&#x27;</span> file_to_parse</span><br></pre></td></tr></table></figure>
+<p><code>-F</code>指定在我们要基于哪个分隔字段</p>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a><code>grep</code></h4><p>查找文件内的文本<br>使用grep搜索与一个或多个正则表达式匹配的文本行<br>并仅输出匹配的行<br><code>grep pattern filename</code></p>
+<p><code>-i</code>强制忽略单词大小写<br><code>-r</code>搜索指定目录下的所有文件<br><code>-w</code>只搜索单词</p>
+<h4 id="wc"><a href="#wc" class="headerlink" title="wc"></a><code>wc</code></h4><p>返回一个文件的行数，单词数，字符数<br><code>wc filename</code></p>
+<h4 id="sed"><a href="#sed" class="headerlink" title="sed"></a><code>sed</code></h4><p>用于过滤和转换文本的流编辑器</p>
+<p>用连字符替换所有空格</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">&#x27;s/ /-/g&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+<p>使用”d”替换所有的数字</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">&#x27;s/[0-9]/d/g&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a><code>sort</code></h4><p>排序文本文件的行</p>
+<p>随机化一个排序的example.txt</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span> example.txt | <span class="built_in">sort</span> -R</span><br></pre></td></tr></table></figure>
+
+<h4 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a><code>uniq</code></h4><p>报告或省略重复的行</p>
+<p>只显示example.txt的唯一行<br>(首先需要排序，否则看不到重叠)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span> example.txt | <span class="built_in">uniq</span></span><br></pre></td></tr></table></figure>
+
+<p>显示每行的唯一项，并告诉找到了多少个实例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span> example.txt | <span class="built_in">uniq</span> -c</span><br></pre></td></tr></table></figure>
+
+<h4 id="cut"><a href="#cut" class="headerlink" title="cut"></a><code>cut</code></h4><p>从每行文件中删除部分</p>
+<p>显示第2,7和9列，空格作为分隔符</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cut</span> -d <span class="string">&quot; &quot;</span> -f2,7,9 example.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="echo"><a href="#echo" class="headerlink" title="echo"></a><code>echo</code></h4><p>显示一行文字</p>
+<p>用字母之间的换行显示 “Hello World”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -ne <span class="string">&quot;Hello\nWorld\n&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="fmt"><a href="#fmt" class="headerlink" title="fmt"></a><code>fmt</code></h4><p>简单的最佳文本格式化程序</p>
+<p>将example.txt的行输出为20个字符的宽度</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> example.txt | <span class="built_in">fmt</span> -w 20</span><br></pre></td></tr></table></figure>
+
+<h4 id="tr"><a href="#tr" class="headerlink" title="tr"></a><code>tr</code></h4><p>翻译或删除字符</p>
+<p>把所有小写字母变成为大写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> example.txt | <span class="built_in">tr</span> <span class="string">&#x27;a-z&#x27;</span> <span class="string">&#x27;A-Z&#x27;</span> </span><br></pre></td></tr></table></figure>
+<p>把所有空格变成换行符</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> example.txt | <span class="built_in">tr</span> <span class="string">&#x27; &#x27;</span> <span class="string">&#x27;\n&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="nl"><a href="#nl" class="headerlink" title="nl"></a><code>nl</code></h4><p>显示文件的行数</p>
+<p>带行号显示 example.txt</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nl</span> -s<span class="string">&quot;. &quot;</span> example.txt </span><br></pre></td></tr></table></figure>
+
+<h4 id="egrep"><a href="#egrep" class="headerlink" title="egrep"></a><code>egrep</code></h4><p>打印匹配模式的行</p>
+<ul>
+<li>扩展表达式<br>别名：<code>&#39;grep -E&#39;</code></li>
+</ul>
+<p>显示“Lorem”或“dolor”的行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">egrep <span class="string">&#x27;(Lorem|dolor)&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E <span class="string">&#x27;(Lorem|dolor)&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="fgrep"><a href="#fgrep" class="headerlink" title="fgrep"></a><code>fgrep</code></h4><p>打印匹配模式到的行</p>
+<ul>
+<li>FIXED模式匹配<br>别名：<code>&#39;grep -F&#39;</code></li>
+</ul>
+<p>找到具体的字符串’（Lorem | doloar）’</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fgrep <span class="string">&#x27;(Lorem|dolor)&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -F <span class="string">&#x27;(Lorem|dolor)&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h3><h4 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a><code>mkdir</code></h4><p>生成一个新的目录<br><code>mkdir dirname</code></p>
+<h4 id="cd"><a href="#cd" class="headerlink" title="cd"></a><code>cd</code></h4><p>从一个目录转到另外一个目录</p>
+<p>移动到主目录<br><code>$ cd</code><br>移动到该目录<br><code>cd dirname</code></p>
+<h4 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a><code>pwd</code></h4><p>返回目前所在的目录</p>
+<h3 id="SSH，系统信息，网络操作"><a href="#SSH，系统信息，网络操作" class="headerlink" title="SSH，系统信息，网络操作"></a>SSH，系统信息，网络操作</h3><h4 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a><code>ssh</code></h4>
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/13/U5-Words/">U5 Words<span class="note">较早</span></a><div class="line"></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://youngzhenhao.github.io/">@youngzhenhao</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
