@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.1.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>Solidity 基本语法 - HiYOUNG</title>
+
+  
+
+  
+    <meta name="description" content="https:&#x2F;&#x2F;remix.ethereum.org">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solidity 基本语法">
+<meta property="og:url" content="https://youngzhenhao.github.io/2022/04/16/Solidity-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/index.html">
+<meta property="og:site_name" content="HiYOUNG">
+<meta property="og:description" content="https:&#x2F;&#x2F;remix.ethereum.org">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-16T03:05:21.000Z">
+<meta property="article:modified_time" content="2022-04-16T06:38:43.878Z">
+<meta property="article:author" content="youngzhenhao">
+<meta property="article:tag" content="Solidity">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/pojun.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">HiYOUNG</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">便笺</a><a class="nav-item" href="/more/">更多</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC"><span class="toc-text">基本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%AF%E8%A7%81%E6%80%A7%E8%AF%B4%E6%98%8E%E7%AC%A6-Function-Visibility-Specifiers"><span class="toc-text">函数可见性说明符(Function Visibility Specifiers)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#public"><span class="toc-text">public</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#private"><span class="toc-text">private</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#external"><span class="toc-text">external</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#internal"><span class="toc-text">internal</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6-Modifiers"><span class="toc-text">修饰符(Modifiers)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#pure"><span class="toc-text">pure</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#view"><span class="toc-text">view</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#payable"><span class="toc-text">payable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#constant"><span class="toc-text">constant</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#immutable"><span class="toc-text">immutable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#anonymous"><span class="toc-text">anonymous</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#indexed"><span class="toc-text">indexed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#virtual"><span class="toc-text">virtual</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#override"><span class="toc-text">override</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E7%95%99%E5%85%B3%E9%94%AE%E5%AD%97-Reserved-Keywords"><span class="toc-text">保留关键字(Reserved Keywords)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E6%96%87%E4%BB%B6%E5%B8%83%E5%B1%80-Layout-of-a-Solidity-Source-File"><span class="toc-text">源文件布局(Layout of a Solidity Source File)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%A0%87%E8%AF%86-Version-Pragma"><span class="toc-text">版本标识(Version Pragma)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E5%85%B6%E5%AE%83%E6%BA%90%E6%96%87%E4%BB%B6-Importing-other-Source-Files"><span class="toc-text">导入其它源文件(Importing other Source Files)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E7%BA%A6%E7%BB%93%E6%9E%84-Structure-of-a-Contract"><span class="toc-text">合约结构(Structure of a Contract)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F-State-Variables"><span class="toc-text">状态变量(State Variables)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0-Functions"><span class="toc-text">函数(Functions)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6-Events"><span class="toc-text">事件(Events)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF-Errors"><span class="toc-text">错误(Errors)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E7%B1%BB%E5%9E%8B-Struct-Types"><span class="toc-text">结构类型(Struct Types)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B-Enum-Types"><span class="toc-text">枚举类型(Enum Types)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B-Types"><span class="toc-text">类型(Types)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%80%BC%E7%B1%BB%E5%9E%8B-Value-Types"><span class="toc-text">值类型(Value Types)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC-Booleans"><span class="toc-text">布尔值(Booleans)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E6%95%B0-Integers"><span class="toc-text">整数(Integers)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%94%E8%BE%83-Comparisons"><span class="toc-text">比较(Comparisons)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97-Bit-operations"><span class="toc-text">位运算(Bit operations)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D-Shifts"><span class="toc-text">移位(Shifts)</span></a></li></ol></li></ol></li></ol></div></div></div>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Solidity/">Solidity</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-16T03:05:21.000Z">2022-04-16</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>Solidity 基本语法</span></h1>
+<p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/">https://remix.ethereum.org</a></p>
+<span id="more"></span>
+
+<p>在cmd中用本地文件连接在线编译器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remixd -s D:\remix\contract --remix-ide https://remix.ethereum.org</span><br></pre></td></tr></table></figure>
+
+<p>然后点击home中的<code>Connect to Localhost</code><br>即可使用在线编译器并且保存在本地</p>
+<hr>
+<p>doc:<br><a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/v0.8.13/layout-of-source-files.html#importing-other-source-files">https://docs.soliditylang.org/en/v0.8.13/layout-of-source-files.html#importing-other-source-files</a></p>
+<p>翻译:<br><a target="_blank" rel="noopener" href="https://www.osgeo.cn/solidity/layout-of-source-files.html">https://www.osgeo.cn/solidity/layout-of-source-files.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/solidity/layout-of-source-files.html">https://learnblockchain.cn/docs/solidity/layout-of-source-files.html</a></p>
+<hr>
+<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><h3 id="函数可见性说明符-Function-Visibility-Specifiers"><a href="#函数可见性说明符-Function-Visibility-Specifiers" class="headerlink" title="函数可见性说明符(Function Visibility Specifiers)"></a>函数可见性说明符(Function Visibility Specifiers)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function myFunction() &lt;visibility specifier&gt; returns (bool) &#123;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="public"><a href="#public" class="headerlink" title="public"></a><code>public</code></h4><p>visible externally and internally (creates a getter function for storage&#x2F;state variables)<br>外部和内部都可见(为存储&#x2F;状态变量创建getter函数)</p>
+<h4 id="private"><a href="#private" class="headerlink" title="private"></a><code>private</code></h4><p>only visible in the current contract<br>仅在当前合约中可见</p>
+<h4 id="external"><a href="#external" class="headerlink" title="external"></a><code>external</code></h4><p>only visible externally (only for functions) - i.e. can only be message-called (via this.func)<br>仅在外部可见(仅对函数可见)-即只能被message调用(通过this.func)</p>
+<h4 id="internal"><a href="#internal" class="headerlink" title="internal"></a><code>internal</code></h4><p>only visible internally<br>仅在内部可见</p>
+<h3 id="修饰符-Modifiers"><a href="#修饰符-Modifiers" class="headerlink" title="修饰符(Modifiers)"></a>修饰符(Modifiers)</h3><h4 id="pure"><a href="#pure" class="headerlink" title="pure"></a><code>pure</code></h4><p>for functions: Disallows modification or access of state.<br>对于函数:禁止修改或访问状态。</p>
+<h4 id="view"><a href="#view" class="headerlink" title="view"></a><code>view</code></h4><p>for functions: Disallows modification of state.<br>对于函数:不允许修改状态。</p>
+<h4 id="payable"><a href="#payable" class="headerlink" title="payable"></a><code>payable</code></h4><p>for functions: Allows them to receive Ether together with a call.<br>对于函数:允许它们在调用时接收Ether。</p>
+<h4 id="constant"><a href="#constant" class="headerlink" title="constant"></a><code>constant</code></h4><p>for state variables: Disallows assignment (except initialisation), does not occupy storage slot.<br>对于状态变量:不允许赋值(初始化除外)，不占用存储槽。</p>
+<h4 id="immutable"><a href="#immutable" class="headerlink" title="immutable"></a><code>immutable</code></h4><p>for state variables: Allows exactly one assignment at construction time and is constant afterwards. Is stored in code.<br>对于状态变量:在构造时只允许一个赋值，然后是常量。以代码形式存储。</p>
+<h4 id="anonymous"><a href="#anonymous" class="headerlink" title="anonymous"></a><code>anonymous</code></h4><p>for events: Does not store event signature as topic.<br>对于事件:不将事件签名存储为topic。</p>
+<h4 id="indexed"><a href="#indexed" class="headerlink" title="indexed"></a><code>indexed</code></h4><p>for event parameters: Stores the parameter as topic.<br>对于事件参数:将参数存储为topic。</p>
+<h4 id="virtual"><a href="#virtual" class="headerlink" title="virtual"></a><code>virtual</code></h4><p>for functions and modifiers: Allows the function’s or modifier’s behaviour to be changed in derived contracts.<br>对于函数和修饰符:允许在派生合约中改变函数或修饰符的行为。</p>
+<h4 id="override"><a href="#override" class="headerlink" title="override"></a><code>override</code></h4><p>States that this function, modifier or public state variable changes the behaviour of a function or modifier in a base contract.<br>声明此函数、修饰符或公共状态变量改变基合约中函数或修饰符的行为。</p>
+<h3 id="保留关键字-Reserved-Keywords"><a href="#保留关键字-Reserved-Keywords" class="headerlink" title="保留关键字(Reserved Keywords)"></a>保留关键字(Reserved Keywords)</h3><p>These keywords are reserved in Solidity. They might become part of the syntax in the future:<br>这些关键字在solidity中保留。它们将来可能会成为语法的一部分:</p>
+<p><code>after</code>, <code>alias</code>, <code>apply</code>, <code>auto</code>, <code>case</code>, <code>copyof</code>, <code>default</code>, <code>define</code>, <code>final</code>, <code>immutable</code>, <code>implements</code>, <code>in</code>, <code>inline</code>, <code>let</code>, <code>macro</code>, <code>match</code>, <code>mutable</code>, <code>null</code>, <code>of</code>, <code>partial</code>, <code>promise</code>, <code>reference</code>, <code>relocatable</code>, <code>sealed</code>, <code>sizeof</code>, <code>static</code>, <code>supports</code>, <code>switch</code>, <code>typedef</code>, <code>typeof</code>, <code>unchecked</code>.</p>
+<h2 id="源文件布局-Layout-of-a-Solidity-Source-File"><a href="#源文件布局-Layout-of-a-Solidity-Source-File" class="headerlink" title="源文件布局(Layout of a Solidity Source File)"></a>源文件布局(Layout of a Solidity Source File)</h2><h3 id="版本标识-Version-Pragma"><a href="#版本标识-Version-Pragma" class="headerlink" title="版本标识(Version Pragma)"></a>版本标识(Version Pragma)</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.5.2;</span><br></pre></td></tr></table></figure>
+
+<p>遵循<a target="_blank" rel="noopener" href="http://nodejs.cn/learn/semantic-versioning-using-npm">npm版本语义</a></p>
+<h3 id="导入其它源文件-Importing-other-Source-Files"><a href="#导入其它源文件-Importing-other-Source-Files" class="headerlink" title="导入其它源文件(Importing other Source Files)"></a>导入其它源文件(Importing other Source Files)</h3><p>在全局层面上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;filename&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>这个 filename 部件称为 导入路径 。<br>此语句将所有全局符号从“filename”(以及在那里导入的符号)导入到当前全局作用域(与ES6不同，但为了稳固而向后兼容)。</p>
+<p>不建议使用这种形式，因为它会不可预知地污染命名空间。<br>如果您在“filename”中添加新的顶级项目，则它们会自动出现在从“filename”导入的所有文件中。最好是显式导入特定符号。</p>
+<p>以下示例创建新的全局符号 symbolName 其成员都是来自<br>“filename”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import * as symbolName from &quot;filename&quot;;</span><br></pre></td></tr></table></figure>
+<p>然后所有全局符号都以<code>symbolName.symbol</code>格式提供。 此语法的变体不属于ES6，但可能有用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &quot;filename&quot; as symbolName;</span><br></pre></td></tr></table></figure>
+
+<p>相当于 import * as symbolName from “filename”; .</p>
+<p>如果存在命名冲突，则可以在导入时重命名符号。<br>例如，下面的代码创建了新的全局符号 alias 和 symbol2 ，<br>引用的 symbol1 和 symbol2 来自 “filename” 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import &#123;symbol1 as alias, symbol2&#125; from &quot;filename&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>用 import “.&#x2F;filename” as symbolName; 语句导入当前源文件同目录下的文件 filename 。 如果用 import “filename” as symbolName; 代替，可能会引入不同的（如在全局 include directory 中）文件。</p>
+<h2 id="合约结构-Structure-of-a-Contract"><a href="#合约结构-Structure-of-a-Contract" class="headerlink" title="合约结构(Structure of a Contract)"></a>合约结构(Structure of a Contract)</h2><h3 id="状态变量-State-Variables"><a href="#状态变量-State-Variables" class="headerlink" title="状态变量(State Variables)"></a>状态变量(State Variables)</h3><p>State variables are variables whose values are permanently stored in contract storage.<br>状态变量是永久地存储在合约存储中的值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract SimpleStorage &#123;</span><br><span class="line">    uint storedData; // State variable</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数-Functions"><a href="#函数-Functions" class="headerlink" title="函数(Functions)"></a>函数(Functions)</h3><p>Functions are the executable units of code. Functions are usually defined inside a contract, but they can also be defined outside of contracts.<br>函数是代码的可执行单元。函数通常定义在合约内部，但它们也可以定义在合约之外。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.7.1 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract SimpleAuction &#123;</span><br><span class="line">    function bid() public payable &#123; // Function</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Helper function defined outside of a contract</span><br><span class="line">function helper(uint x) pure returns (uint) &#123;</span><br><span class="line">    return x * 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Function Calls can happen internally or externally and have different levels of visibility towards other contracts. Functions accept parameters and return variables to pass parameters and values between them.<br>函数调用可以在内部或外部发生，并且对其他合约具有不同级别的可见性。函数接受参数并返回变量，以便在它们之间传递参数和值。</p>
+<h3 id="事件-Events"><a href="#事件-Events" class="headerlink" title="事件(Events)"></a>事件(Events)</h3><p>Events are convenience interfaces with the EVM logging facilities.<br>事件是EVM日志记录工具的方便接口。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.21 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract SimpleAuction &#123;</span><br><span class="line">    event HighestBidIncreased(address bidder, uint amount); // Event</span><br><span class="line"></span><br><span class="line">    function bid() public payable &#123;</span><br><span class="line">        // ...</span><br><span class="line">        emit HighestBidIncreased(msg.sender, msg.value); // Triggering event</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误-Errors"><a href="#错误-Errors" class="headerlink" title="错误(Errors)"></a>错误(Errors)</h3><p>Errors allow you to define descriptive names and data for failure situations. Errors can be used in revert statements. In comparison to string descriptions, errors are much cheaper and allow you to encode additional data. You can use NatSpec to describe the error to the user.<br>错误允许您为失败情况定义描述性名称和数据。在revert语句中可以使用错误。与字符串描述相比，错误要cheaper得多，并且允许您编码额外的数据。您可以使用NatSpec向用户描述错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">/// Not enough funds for transfer. Requested `requested`,</span><br><span class="line">/// but only `available` available.</span><br><span class="line">error NotEnoughFunds(uint requested, uint available);</span><br><span class="line"></span><br><span class="line">contract Token &#123;</span><br><span class="line">    mapping(address =&gt; uint) balances;</span><br><span class="line">    function transfer(address to, uint amount) public &#123;</span><br><span class="line">        uint balance = balances[msg.sender];</span><br><span class="line">        if (balance &lt; amount)</span><br><span class="line">            revert NotEnoughFunds(amount, balance);</span><br><span class="line">        balances[msg.sender] -= amount;</span><br><span class="line">        balances[to] += amount;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="结构类型-Struct-Types"><a href="#结构类型-Struct-Types" class="headerlink" title="结构类型(Struct Types)"></a>结构类型(Struct Types)</h3><p>Structs are custom defined types that can group several variables<br>结构是可以将多个变量分组的自定义类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract Ballot &#123;</span><br><span class="line">    struct Voter &#123; // Struct</span><br><span class="line">        uint weight;</span><br><span class="line">        bool voted;</span><br><span class="line">        address delegate;</span><br><span class="line">        uint vote;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="枚举类型-Enum-Types"><a href="#枚举类型-Enum-Types" class="headerlink" title="枚举类型(Enum Types)"></a>枚举类型(Enum Types)</h3><p>Enums can be used to create custom types with a finite set of ‘constant values’<br>枚举可以用来创建具有有限“常量”集的自定义类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.4.0 &lt;0.9.0;</span><br><span class="line"></span><br><span class="line">contract Purchase &#123;</span><br><span class="line">    enum State &#123; Created, Locked, Inactive &#125; // Enum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类型-Types"><a href="#类型-Types" class="headerlink" title="类型(Types)"></a>类型(Types)</h3><p>Solidity is a statically typed language, which means that the type of each variable (state and local) needs to be specified. Solidity provides several elementary types which can be combined to form complex types.<br>可靠性是一种静态类型语言，这意味着需要指定每个变量(状态和本地)的类型。可靠性提供了几种基本类型，这些类型可以组合成复杂类型。</p>
+<p>The concept of “undefined” or “null” values does not exist in Solidity, but newly declared variables always have a default value dependent on its type. To handle any unexpected values, you should use the revert function to revert the whole transaction, or return a tuple with a second bool value denoting success.<br>“undefined”或“null”值的概念在solididity中不存在，但是新声明的变量总是有一个依赖于其类型的默认值。要处理任何意外值，您应该使用revert函数来恢复整个事务，或者返回一个元组，该元组的第二个bool值表示成功。</p>
+<h3 id="值类型-Value-Types"><a href="#值类型-Value-Types" class="headerlink" title="值类型(Value Types)"></a>值类型(Value Types)</h3><p>The following types are also called value types because variables of these types will always be passed by value, i.e. they are always copied when they are used as function arguments or in assignments.<br>以下类型也被称为值类型，因为这些类型的变量总是通过值传递，也就是说，当它们被用作函数参数或赋值时，它们总是被复制。</p>
+<h4 id="布尔值-Booleans"><a href="#布尔值-Booleans" class="headerlink" title="布尔值(Booleans)"></a>布尔值(Booleans)</h4><p>bool: The possible values are constants true and false.<br>取值为常量true或false。</p>
+<p>Operators:<br>运算符<br>! (logical negation)<br>逻辑非<br>&amp;&amp; (logical conjunction, “and”)<br>逻辑与<br>|| (logical disjunction, “or”)<br>逻辑或<br>&#x3D;&#x3D; (equality)<br>等于<br>!&#x3D; (inequality)<br>不等于</p>
+<p>The operators || and &amp;&amp; apply the common short-circuiting rules. This means that in the expression f(x) || g(y), if f(x) evaluates to true, g(y) will not be evaluated even if it may have side-effects.<br>运算符||和&amp;&amp;应用常见的短路规则。这意味着在表达式f(x) || g(y)中，如果f(x)的值为true, g(y)将不会被求值，即使它可能有副作用。</p>
+<ul>
+<li>逻辑与中，表达式1为真才会进行表达式2的运算</li>
+<li>逻辑或中，表达式1为假才会进行表达式2的运算</li>
+</ul>
+<h4 id="整数-Integers"><a href="#整数-Integers" class="headerlink" title="整数(Integers)"></a>整数(Integers)</h4><p>int &#x2F; uint: Signed and unsigned integers of various sizes. Keywords uint8 to uint256 in steps of 8 (unsigned of 8 up to 256 bits) and int8 to int256. uint and int are aliases for uint256 and int256, respectively.</p>
+<p>int &#x2F; uint:各种大小的有符号和无符号整数。关键字uint8 to uint256 in steps of 8 (unsigned of 8 up to 256 bits) and int8 to int256。Uint和int分别是uint256和int256的别名。</p>
+<p>Operators:<br>运算符<br>Comparisons: <code>&lt;=, &lt;, ==, !=, &gt;=, &gt;</code> (evaluate to bool)<br>比较</p>
+<p>Bit operators: <code>&amp;, |, ^ </code>(bitwise exclusive or), <code>~</code> (bitwise negation)<br>位运算符:按位与，按位或，按位异或，按位取反</p>
+<p>Shift operators: <code>&lt;&lt;</code> (left shift), <code>&gt;&gt;</code> (right shift)<br>移位运算符:<code>&lt;&lt;</code>(左移)，<code>&gt;&gt;</code>(右移)  </p>
+<p>Arithmetic operators: <code>+, -</code>, unary - (only for signed integers), <code>*, /, %</code> (modulo), <code>**</code> (exponentiation)</p>
+<p>算术运算符:<code>+，-</code>，一元-(只适用于有符号的整数)，<code>*，/，%</code>(取模)，<code>**</code>(取幂)  </p>
+<p>For an integer type X, you can use type(X).min and type(X).max to access the minimum and maximum value representable by the type.<br>对于整数类型X，你可以用type(X).min和type(X).max访问该类型可表示的最小值和最大值。</p>
+<h4 id="比较-Comparisons"><a href="#比较-Comparisons" class="headerlink" title="比较(Comparisons)"></a>比较(Comparisons)</h4><p>The value of a comparison is the one obtained by comparing the integer value.<br>比较的值是通过比较整数值得到的值。</p>
+<h4 id="位运算-Bit-operations"><a href="#位运算-Bit-operations" class="headerlink" title="位运算(Bit operations)"></a>位运算(Bit operations)</h4><p>Bit operations are performed on the two’s complement representation of the number. This means that, for example <code>~int256(0) == int256(-1)</code>.<br>位运算是对两个数的补码表示进行的。这意味着，例如<code>~int256(0) == int256(-1)</code>。</p>
+<ul>
+<li>对0的补码取反为-1的补码</li>
+</ul>
+<h4 id="移位-Shifts"><a href="#移位-Shifts" class="headerlink" title="移位(Shifts)"></a>移位(Shifts)</h4>
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/13/Bash-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Bash 常用命令<span class="note">较早</span></a><div class="line"></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://youngzhenhao.github.io/">@youngzhenhao</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
