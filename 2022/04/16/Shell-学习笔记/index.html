@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="Hexo 6.1.0">
   <meta charset="utf-8">
-  <meta name="robots" content="noindex,follow">
+  
 
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
@@ -18,17 +18,22 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
-  <title>标签：Shell - HiYOUNG</title>
+  <title>Shell 学习笔记 - HiYOUNG</title>
 
   
 
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="HiYOUNG">
-<meta property="og:url" content="https://youngzhenhao.github.io/tags/Shell/index.html">
+    <meta name="description" content="一些笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell 学习笔记">
+<meta property="og:url" content="https://youngzhenhao.github.io/2022/04/16/Shell-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="HiYOUNG">
+<meta property="og:description" content="一些笔记">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-16T12:23:17.000Z">
+<meta property="article:modified_time" content="2022-04-17T05:23:53.479Z">
 <meta property="article:author" content="youngzhenhao">
+<meta property="article:tag" content="Bash">
 <meta name="twitter:card" content="summary">
   
   
@@ -51,8 +56,10 @@
   
 
 
+
+
   <div class='l_body' id='start'>
-    <aside class='l_left' layout=''>
+    <aside class='l_left' layout='post'>
     
 
 
@@ -62,61 +69,37 @@
 <nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">便笺</a><a class="nav-item" href="/more/">更多</a></nav></header>
 
 <div class="widgets">
-<div class="widget-wrap" id="markdown"><div class="widget-header cap dis-select"><span class="name">欢迎</span></div><div class="widget-body fs14"><hr>
-<p>炳烛之明不拟日中之光</p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/">Stellar</a></p>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a></p>
-</div></div>
 
-<div class="widget-wrap" id="recent"><div class="widget-header cap dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><div class="more-item"><a class="title" href="/2022/04/16/Solidity-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Solidity 基本语法</a></div><div class="more-item"><a class="title" href="/2022/04/13/Bash-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Bash 常用命令</a></div><div class="more-item"><a class="title" href="/2022/04/09/Shell-%20%E9%83%A8%E5%88%86%E8%84%9A%E6%9C%AC/">Shell 部分脚本</a></div><div class="more-item"><a class="title" href="/2022/04/11/CET6-Words-1/">CET6 Words 1</a></div><div class="more-item"><a class="title" href="/2022/04/09/Markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Markdown 基本语法</a></div></div></div>
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#getopts"><span class="toc-text">getopts</span></a></li></ol></div></div></div>
+
+
 </div>
 
 
     </aside>
-    <div class='l_main list'>
+    <div class='l_main'>
       
-  
-
-<header class="header mobile-only">
-
-<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/pojun.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">HiYOUNG</div></a></div>
-</header>
-
-
 
       
 
-  
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Bash/">Bash</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-16T12:23:17.000Z">2022-04-16</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>Shell 学习笔记</span></h1>
+<p>一些笔记</p>
+<span id="more"></span>
+
+<h4 id="getopts"><a href="#getopts" class="headerlink" title="getopts"></a>getopts</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="built_in">getopts</span> <span class="string">&quot;:q:d:a:f:&quot;</span> opt</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">        <span class="keyword">case</span> <span class="variable">$opt</span> <span class="keyword">in</span></span><br><span class="line">        q)</span><br><span class="line">                email=<span class="variable">$OPTARG</span></span><br><span class="line">        ;;</span><br><span class="line">        d)</span><br><span class="line">                number=<span class="variable">$OPTARG</span></span><br><span class="line">        ;;</span><br><span class="line">        a)</span><br><span class="line">                string=<span class="variable">$OPTARG</span></span><br><span class="line">        ;;</span><br><span class="line">        f)</span><br><span class="line">                inputfile=<span class="variable">$OPTARG</span></span><br><span class="line">        ;;</span><br><span class="line">        <span class="keyword">esac</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/16/Solidity-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">Solidity 基本语法<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/2022/04/17/Solidity-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Solidity 学习笔记<span class="note">较新</span></a></section></div>
 
 
-  <div class='nav-wrap'>
-  <nav class='sub post cap'>
-    
-      <a href='/'>近期发布</a>
-    
-    
-      
-        <a href='/categories'>分类</a>
-      
-    
-    
-      
-        <a class='active' href='/tags'>标签：Shell</a>
-      
-    
-    
-      
-        <a href='/archives'>归档</a>
-      
-    
-  </nav>
-</div>
 
-  <div class="post-list post"><a class="post-card post " href="/2022/04/09/Shell-%20%E9%83%A8%E5%88%86%E8%84%9A%E6%9C%AC/">
-<article class="md"><h2 class="post-title">Shell 部分脚本</h2><div class="excerpt"><p>Shell script 是一种为 shell 编写的脚本程序。</p></div><div class="meta cap"><span class="cap" id="post-meta">发布于&nbsp;<time datetime="2022-04-09T07:19:23.000Z">2022-04-09</time></span><span class="cap breadcrumb">Shell</span></div></article>
-</a></div>
-  
 
 
 
