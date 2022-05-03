@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.1.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>Go Spider - HiYOUNG</title>
+
+  
+
+  
+    <meta name="description" content="Go Spider">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go Spider">
+<meta property="og:url" content="https://youngzhenhao.github.io/2022/05/03/Go-Spider/index.html">
+<meta property="og:site_name" content="HiYOUNG">
+<meta property="og:description" content="Go Spider">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-03T09:58:44.000Z">
+<meta property="article:modified_time" content="2022-05-03T10:00:09.257Z">
+<meta property="article:author" content="youngzhenhao">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/pojun.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">HiYOUNG</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">便笺</a><a class="nav-item" href="/more/">更多</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE"><span class="toc-text">静态数据</span></a></li></ol></div></div></div>
+
+
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Go/">Go</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-05-03T09:58:44.000Z">2022-05-03</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>Go Spider</span></h1>
+<p>Go Spider</p>
+<span id="more"></span>
+
+<h4 id="静态数据"><a href="#静态数据" class="headerlink" title="静态数据"></a>静态数据</h4><p>豆瓣TOP250</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;database/sql&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/PuerkitoBio/goquery&quot;</span></span><br><span class="line">	_ <span class="string">&quot;github.com/jinzhu/gorm/dialects/mysql&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">	<span class="string">&quot;regexp&quot;</span></span><br><span class="line">	<span class="string">&quot;strconv&quot;</span></span><br><span class="line">	<span class="string">&quot;strings&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	USERNAME = <span class="string">&quot;root&quot;</span></span><br><span class="line">	PASSWORD = <span class="string">&quot;123456&quot;</span></span><br><span class="line">	HOST = <span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line">	PORT = <span class="string">&quot;3306&quot;</span></span><br><span class="line">	DBNAME = <span class="string">&quot;douban_movie&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> DB *sql.DB</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> MovieData <span class="keyword">struct</span> &#123;</span><br><span class="line">	Title 	 <span class="type">string</span> <span class="string">`json:&quot;title&quot;`</span></span><br><span class="line">	Director <span class="type">string</span> <span class="string">`json:&quot;director&quot;`</span></span><br><span class="line">	Picture  <span class="type">string</span> <span class="string">`json:&quot;picture&quot;`</span></span><br><span class="line">	Actor  	 <span class="type">string</span> <span class="string">`json:&quot;actor&quot;`</span></span><br><span class="line">	Year 	 <span class="type">string</span> <span class="string">`json:&quot;year&quot;`</span></span><br><span class="line">	Score 	 <span class="type">string</span> <span class="string">`json:&quot;score&quot;`</span></span><br><span class="line">	Quote 	 <span class="type">string</span> <span class="string">`json:&quot;quote&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	InitDB()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i ++ &#123;</span><br><span class="line">		fmt.Printf(<span class="string">&quot;正在爬取第%d页\n&quot;</span>, i + <span class="number">1</span>)</span><br><span class="line">		Spider(strconv.Itoa(i * <span class="number">25</span>))</span><br><span class="line"></span><br><span class="line">		<span class="comment">// int 类型转换为string</span></span><br><span class="line">		<span class="comment">// Spider(fmt.Sprintf(&quot;%d&quot;, i * 25))</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Spider</span><span class="params">(page <span class="type">string</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 1. 发送请求</span></span><br><span class="line">	client := http.Client&#123;&#125;</span><br><span class="line">	<span class="comment">//request, err := http.NewRequest(&quot;GET&quot;, &quot;https://movie.douban.com/top250&quot;, nil)</span></span><br><span class="line">	request, err := http.NewRequest(<span class="string">&quot;GET&quot;</span>, <span class="string">&quot;https://movie.douban.com/top250?start=&quot;</span> + page + <span class="string">&quot;&amp;filter=&quot;</span>, <span class="literal">nil</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;request err&quot;</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 防止浏览器检测爬虫访问，所以加一些请求头伪造成浏览器访问</span></span><br><span class="line">	request.Header.Set(<span class="string">&quot;Connection&quot;</span>, <span class="string">&quot;keep-alive&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Cache-Control&quot;</span>, <span class="string">&quot;max-age=0&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;sec-ch-ua-mobile&quot;</span>, <span class="string">&quot;?0&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Upgrade-Insecure-Requests&quot;</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;User-Agent&quot;</span>, <span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Accept&quot;</span>, <span class="string">&quot;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Sec-Fetch-Site&quot;</span>, <span class="string">&quot;same-origin&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Sec-Fetch-Mode&quot;</span>, <span class="string">&quot;navigate&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Sec-Fetch-User&quot;</span>, <span class="string">&quot;?1&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Sec-Fetch-Dest&quot;</span>, <span class="string">&quot;document&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Referer&quot;</span>, <span class="string">&quot;https://movie.douban.com/chart&quot;</span>)</span><br><span class="line">	request.Header.Set(<span class="string">&quot;Accept-Language&quot;</span>, <span class="string">&quot;zh-CN,zh;q=0.9&quot;</span>)</span><br><span class="line"></span><br><span class="line">	response, err := client.Do(request)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;请求失败&quot;</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> response.Body.Close()</span><br><span class="line">	<span class="comment">// 2. 解析网页</span></span><br><span class="line">	docDetail, err := goquery.NewDocumentFromReader(response.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;解析失败&quot;</span>, err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 3. 获取节点信息</span></span><br><span class="line">	<span class="comment">// #content &gt; div &gt; div.article &gt; ol &gt; li:nth-child(1) &gt; div &gt; div.info &gt; div.hd &gt; a &gt; span:nth-child(1)</span></span><br><span class="line">	<span class="comment">// #content &gt; div &gt; div.article &gt; ol &gt; li:nth-child(1)</span></span><br><span class="line">	<span class="comment">// #content &gt; div &gt; div.article &gt; ol &gt; li</span></span><br><span class="line">	<span class="comment">// #content &gt; div &gt; div.article &gt; ol &gt; li:nth-child(1) &gt; div &gt; div.pic &gt; a &gt; img</span></span><br><span class="line">	<span class="comment">// #content &gt; div &gt; div.article &gt; ol &gt; li:nth-child(1) &gt; div &gt; div.info &gt; div.bd &gt; p:nth-child(1)</span></span><br><span class="line">	<span class="comment">// #content &gt; div &gt; div.article &gt; ol &gt; li:nth-child(1) &gt; div &gt; div.info &gt; div.bd &gt; div &gt; span.rating_num</span></span><br><span class="line">	<span class="comment">// #content &gt; div &gt; div.article &gt; ol &gt; li:nth-child(1) &gt; div &gt; div.info &gt; div.bd &gt; p.quote &gt; span</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//title := docDetail.Find(&quot;#content &gt; div &gt; div.article &gt; ol &gt; li:nth-child(1) &gt; div &gt; div.info &gt; div.hd &gt; a &gt; span:nth-child(1)&quot;).Text()</span></span><br><span class="line">	<span class="comment">//fmt.Println</span></span><br><span class="line"></span><br><span class="line">	docDetail.Find(<span class="string">&quot;#content &gt; div &gt; div.article &gt; ol &gt; li&quot;</span>). <span class="comment">// 列表</span></span><br><span class="line">		Each(<span class="function"><span class="keyword">func</span><span class="params">(i <span class="type">int</span>, selection *goquery.Selection)</span></span> &#123; <span class="comment">// 在列表里面继续找</span></span><br><span class="line"></span><br><span class="line">			<span class="keyword">var</span> movieDatas MovieData</span><br><span class="line"></span><br><span class="line">			title := selection.Find(<span class="string">&quot;div &gt; div.article &gt; ol &gt; li:nth-child(1)&quot;</span>).Text()</span><br><span class="line">			img := selection.Find(<span class="string">&quot;div &gt; div.pic &gt; a &gt; img&quot;</span>) <span class="comment">// img标签 --&gt; src属性里面</span></span><br><span class="line">			imgTmp, ok := img.Attr(<span class="string">&quot;src&quot;</span>)</span><br><span class="line">			info := selection.Find(<span class="string">&quot;div &gt; div.info &gt; div.bd &gt; p:nth-child(1)&quot;</span>).Text()</span><br><span class="line">			score := selection.Find(<span class="string">&quot;div &gt; div.info &gt; div.bd &gt; div &gt; span.rating_num&quot;</span>).Text()</span><br><span class="line">			quote := selection.Find(<span class="string">&quot;div &gt; div.info &gt; div.bd &gt; p.quote &gt; span&quot;</span>).Text()</span><br><span class="line">			<span class="keyword">if</span> ok &#123;</span><br><span class="line"></span><br><span class="line">				<span class="comment">//fmt.Println(&quot;&quot;, title)</span></span><br><span class="line">				<span class="comment">//fmt.Println(&quot;imgTmp&quot;, imgTmp)</span></span><br><span class="line">				<span class="comment">////fmt.Println(&quot;info&quot;, info)</span></span><br><span class="line">				director, actor, year := InfoSplit(info)</span><br><span class="line">				<span class="comment">//fmt.Println(&quot;director&quot;, director)</span></span><br><span class="line">				<span class="comment">//fmt.Println(&quot;actor&quot;, actor)</span></span><br><span class="line">				<span class="comment">//fmt.Println(&quot;year&quot;, year)</span></span><br><span class="line">				<span class="comment">//</span></span><br><span class="line">				<span class="comment">//fmt.Println(&quot;score&quot;, score)</span></span><br><span class="line">				<span class="comment">//fmt.Println(&quot;quote&quot;, quote)</span></span><br><span class="line"></span><br><span class="line">				movieDatas.Title = title</span><br><span class="line">				movieDatas.Director = director</span><br><span class="line">				movieDatas.Picture = imgTmp</span><br><span class="line">				movieDatas.Actor = actor</span><br><span class="line">				movieDatas.Year = year</span><br><span class="line">				movieDatas.Score = score</span><br><span class="line">				movieDatas.Quote = quote</span><br><span class="line"></span><br><span class="line">				<span class="comment">// 4. 保存信息</span></span><br><span class="line"></span><br><span class="line">				<span class="keyword">if</span> InsertData(movieDatas) &#123;</span><br><span class="line">					<span class="comment">//fmt.Println(&quot;插入成功&quot;)</span></span><br><span class="line">				&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">					fmt.Println(<span class="string">&quot;插入失败&quot;</span>)</span><br><span class="line">					<span class="keyword">return</span></span><br><span class="line">				&#125;</span><br><span class="line"></span><br><span class="line">				<span class="comment">//fmt.Println(movieDatas)</span></span><br><span class="line">			&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	fmt.Println(<span class="string">&quot;插入成功&quot;</span>)</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">InfoSplit</span><span class="params">(info <span class="type">string</span>)</span></span> (director, actor, year <span class="type">string</span>) &#123;</span><br><span class="line"></span><br><span class="line">	directorRegexp, _ := regexp.Compile(<span class="string">`(\d+)`</span>)</span><br><span class="line">	director = <span class="type">string</span>(directorRegexp.Find([]<span class="type">byte</span>(info)))</span><br><span class="line"></span><br><span class="line">	<span class="comment">//actorRegexp, _ := regexp.Compile(`(?&lt;=导演:)(.*)(?=主演)`)  // 不支持环视</span></span><br><span class="line">	actorRegexp, _ := regexp.Compile(<span class="string">`导演:(.*)主演`</span>)</span><br><span class="line">	actor = <span class="type">string</span>(actorRegexp.Find([]<span class="type">byte</span>(info)))</span><br><span class="line"></span><br><span class="line">	<span class="comment">//yearRegexp, _ := regexp.Compile(`(?&lt;=主演:)(.*)`) // 不支持环视</span></span><br><span class="line">	yearRegexp, _ := regexp.Compile(<span class="string">`主演(.*)`</span>)</span><br><span class="line">	year = <span class="type">string</span>(yearRegexp.Find([]<span class="type">byte</span>(info)))</span><br><span class="line">	<span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">InitDB</span><span class="params">()</span></span> &#123;</span><br><span class="line">	path := strings.Join([]<span class="type">string</span>&#123;USERNAME, <span class="string">&quot;:&quot;</span>, PASSWORD, <span class="string">&quot;@tcp(&quot;</span>,HOST, <span class="string">&quot;:&quot;</span>, PORT, <span class="string">&quot;)/&quot;</span>, DBNAME, <span class="string">&quot;?charset=utf8&quot;</span>&#125;, <span class="string">&quot;&quot;</span>)</span><br><span class="line">	DB, _ = sql.Open(<span class="string">&quot;mysql&quot;</span>, path)</span><br><span class="line">	DB.SetConnMaxLifetime(<span class="number">10</span>)</span><br><span class="line">	DB.SetMaxIdleConns(<span class="number">5</span>)</span><br><span class="line">	<span class="keyword">if</span> err := DB.Ping(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;open database fail&quot;</span>)</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(<span class="string">&quot;connect success&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">InsertData</span><span class="params">(movieData MovieData)</span></span> <span class="type">bool</span> &#123;</span><br><span class="line">	tx, err := DB.Begin()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;begin err&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	stmt, err := tx.Prepare(<span class="string">&quot;INSERT INTO movie_data (`Title`,`Director`,`Picture`,`Actor`,`Year`,`Score`,`Quote`) VALUES (?, ?, ?,?,?,?,?)&quot;</span>)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;prepare fail err&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	_, err = stmt.Exec(movieData.Title, movieData.Director, movieData.Picture, movieData.Actor, movieData.Year, movieData.Score, movieData.Quote)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;exec fail&quot;</span>, err)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	_ = tx.Commit()</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/30/Algorithm%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记<span class="note">较早</span></a><div class="line"></div></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://youngzhenhao.github.io/">@youngzhenhao</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
