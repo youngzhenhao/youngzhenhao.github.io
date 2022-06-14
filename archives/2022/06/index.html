@@ -4,7 +4,7 @@
 <head>
   <meta name="generator" content="Hexo 6.1.0">
   <meta charset="utf-8">
-  
+  <meta name="robots" content="noindex,follow">
 
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
@@ -18,22 +18,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
-  <title>Solidity 学习笔记 - HiYOUNG</title>
+  <title>归档 - HiYOUNG</title>
 
   
 
   
-    <meta name="description" content="https:&#x2F;&#x2F;remix.ethereum.org">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Solidity 学习笔记">
-<meta property="og:url" content="https://youngzhenhao.github.io/2022/04/17/Solidity-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="归档">
+<meta property="og:url" content="https://youngzhenhao.github.io/archives/2022/06/index.html">
 <meta property="og:site_name" content="HiYOUNG">
-<meta property="og:description" content="https:&#x2F;&#x2F;remix.ethereum.org">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-17T05:23:35.000Z">
-<meta property="article:modified_time" content="2022-05-08T03:45:47.714Z">
 <meta property="article:author" content="youngzhenhao">
-<meta property="article:tag" content="Solidity">
 <meta name="twitter:card" content="summary">
   
   
@@ -56,10 +51,8 @@
   
 
 
-
-
   <div class='l_body' id='start'>
-    <aside class='l_left' layout='post'>
+    <aside class='l_left' layout=''>
     
 
 
@@ -69,58 +62,419 @@
 <nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/notes/">便笺</a><a class="nav-item" href="/more/">更多</a></nav></header>
 
 <div class="widgets">
-
+<div class="widget-wrap" id="markdown"><div class="widget-header cap dis-select"><span class="name">欢迎</span></div><div class="widget-body fs14"><hr>
+<p>炳烛之明不拟日中之光</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/">Stellar</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a></p>
+</div></div>
 
 <div class="widget-wrap" id="recent"><div class="widget-header cap dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><div class="more-item"><a class="title" href="/2022/06/14/HTML-Note/">HTML Note</a></div><div class="more-item"><a class="title" href="/2022/05/21/Python-%E5%AE%9E%E9%AA%8C/">Python 实验</a></div><div class="more-item"><a class="title" href="/2022/05/26/Go-ExpRe-Note/">Go ExpRe</a></div><div class="more-item"><a class="title" href="/2022/04/18/Python-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">Python 课堂笔记</a></div><div class="more-item"><a class="title" href="/2022/04/27/Go-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">Go 课堂笔记</a></div></div></div>
-
-
-
 </div>
 
 
     </aside>
-    <div class='l_main'>
+    <div class='l_main list'>
+      
+  
+
+<header class="header mobile-only">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/pojun.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">HiYOUNG</div></a></div>
+</header>
+
+
+
       
 
+  
+  <div class='nav-wrap'>
+  <nav class='sub post cap'>
+    
+      <a href='/'>近期发布</a>
+    
+    
       
+        <a href='/categories'>分类</a>
+      
+    
+    
+      
+        <a href='/tags'>标签</a>
+      
+    
+    
+      
+        <a class='active' href='/archives'>归档</a>
+      
+    
+  </nav>
+</div>
 
-<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/Solidity/">Solidity</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-17T05:23:35.000Z">2022-04-17</time></div></div>
-
-<article class='content md post'>
-<h1 class="article-title"><span>Solidity 学习笔记</span></h1>
-<p><a target="_blank" rel="noopener" href="https://remix.ethereum.org/">https://remix.ethereum.org</a></p>
-<span id="more"></span>
-
-<p>在cmd中用本地文件连接在线编译器</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remixd -s D:\remix\contract --remix-ide https://remix.ethereum.org</span><br></pre></td></tr></table></figure>
-
-<p>进入Remix - Ethereum IDE</p>
-<p>点击home中的<code>Connect to Localhost</code><br>即可使用在线编译器并且保存在本地</p>
-<hr>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line"></span><br><span class="line">contract helloworld &#123;</span><br><span class="line"></span><br><span class="line">    string hw = &quot;Hello, world!&quot;;</span><br><span class="line"></span><br><span class="line">    function show() public view returns(string)&#123;</span><br><span class="line">        return hw;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line"></span><br><span class="line">contract helloworld &#123;</span><br><span class="line"></span><br><span class="line">    //function</span><br><span class="line">    function stringtest(string inputstr) public pure returns(string)&#123;</span><br><span class="line">        return inputstr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.4.0;</span><br><span class="line"></span><br><span class="line">contract helloworld &#123;</span><br><span class="line"></span><br><span class="line">    //bool</span><br><span class="line">    bool boola = true;</span><br><span class="line">    function booltesta() public view returns(bool)&#123;</span><br><span class="line">        return boola;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function booltestb(int a, int b) public pure returns(bool)&#123;</span><br><span class="line">        return a == b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
-</div></section></div>
-
-</article>
-
-<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/16/Shell-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Shell 学习笔记<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/2022/04/18/Python-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">Python 课堂笔记<span class="note">较新</span></a></section></div>
-
-
-
-
-
-
+  <div class='post-list'>
+  	
+  	
+  		
+  		
+  			
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  		
+  		
+  	
+  	
+  		<article class='' id='archive'>
+  			<div class='archive-header h4'>2022</div>
+  			
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				
+  		    
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/06/14/HTML-Note/">
+    					<time>06-14</time>
+    					<span>
+                
+      						HTML Note
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/26/Go-ExpRe-Note/">
+    					<time>05-26</time>
+    					<span>
+                
+      						Go ExpRe
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/21/Python-%E5%AE%9E%E9%AA%8C/">
+    					<time>05-21</time>
+    					<span>
+                
+      						Python 实验
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/15/Go-GORM-Note/">
+    					<time>05-15</time>
+    					<span>
+                
+      						Go GORM Note
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/14/%E9%BA%BB%E5%B0%86%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD%E4%B8%AD%E8%8B%B1%E6%96%87%E5%AF%B9%E7%85%A7%E8%A1%A8/">
+    					<time>05-14</time>
+    					<span>
+                
+      						麻将基本术语中英文对照表
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/14/%E4%B8%AD%E5%9B%BD%E9%BA%BB%E5%B0%86%E7%AB%9E%E8%B5%9B%E8%A7%84%E5%88%99-%E8%AF%95%E8%A1%8C/">
+    					<time>05-14</time>
+    					<span>
+                
+      						中国麻将竞赛规则 试行
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/07/Solidity-crypto-zombies/">
+    					<time>05-07</time>
+    					<span>
+                
+      						Solidity crypto zombies
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/07/MySQL-Note/">
+    					<time>05-07</time>
+    					<span>
+                
+      						MySQL Note
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/07/RegExp-Note/">
+    					<time>05-07</time>
+    					<span>
+                
+      						RegExp Note
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/05/Web-Note/">
+    					<time>05-05</time>
+    					<span>
+                
+      						Web Note
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/05/03/Go-Spider/">
+    					<time>05-03</time>
+    					<span>
+                
+      						Go Spider
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/30/Algorithm%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+    					<time>04-30</time>
+    					<span>
+                
+      						算法笔记
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/27/Go-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+    					<time>04-27</time>
+    					<span>
+                
+      						Go 课堂笔记
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/26/Go-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    					<time>04-26</time>
+    					<span>
+                
+      						Go 学习笔记
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/18/Python-%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+    					<time>04-18</time>
+    					<span>
+                
+      						Python 课堂笔记
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/17/Solidity-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    					<time>04-17</time>
+    					<span>
+                
+      						Solidity 学习笔记
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/16/Shell-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    					<time>04-16</time>
+    					<span>
+                
+      						Shell 学习笔记
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/16/Solidity-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+    					<time>04-16</time>
+    					<span>
+                
+      						Solidity 基本语法
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/13/Bash-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+    					<time>04-13</time>
+    					<span>
+                
+      						Bash 常用命令
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/11/CET6-Words-1/">
+    					<time>04-11</time>
+    					<span>
+                
+      						CET6 Words 1
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/09/Shell-%20%E9%83%A8%E5%88%86%E8%84%9A%E6%9C%AC/">
+    					<time>04-09</time>
+    					<span>
+                
+      						Shell 部分脚本
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  				<div class='archive-list'>
+            <a class='post fs14' href="/2022/04/09/Markdown-%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+    					<time>04-09</time>
+    					<span>
+                
+      						Markdown 基本语法
+      					
+              </span>
+    				</a>
+          </div>
+  			
+  		</article>
+  	
+  </div>
 
 
       
