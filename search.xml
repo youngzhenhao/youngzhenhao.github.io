@@ -1,21 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/09/25/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>uniswapv2math</title>
+    <url>/2024/10/24/uniswapv2math/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Reference: <a target="_blank" rel="noopener" href="https://github.com/Cyfrin/advanced-defi-2024/blob/main/excalidraw/amm/uniswap-v2/uniswap_v2_math.excalidraw">https://github.com/Cyfrin/advanced-defi-2024/blob/main/excalidraw/amm/uniswap-v2/uniswap_v2_math.excalidraw</a></p>
+<h2 id="Swap"><a href="#Swap" class="headerlink" title="Swap"></a>Swap</h2><p>Alice swaps $dx$ for $dy$</p>
+<h3 id="Before-swap"><a href="#Before-swap" class="headerlink" title="Before swap"></a>Before swap</h3><p>$$x_{0}y_{0}&#x3D;L^{2}$$</p>
+<h3 id="After-swap"><a href="#After-swap" class="headerlink" title="After swap"></a>After swap</h3><p>$$(x_{0}+dx)(y_{0}-dy)&#x3D;L^{2}$$</p>
+<h3 id="Computation"><a href="#Computation" class="headerlink" title="Computation"></a>Computation</h3><p>$$<br>\begin{equation*}<br>    \begin{aligned}<br>        x_{0}y_{0}&amp;&#x3D;(x_{0}+dx)(y_{0}-dy)\\<br>        \\[1mm]<br>        \frac{x_{0}y_{0}}{x_{0}+dx}&amp;&#x3D;y_{0}-dy\\<br>        \\[1mm]<br>        dy&amp;&#x3D;y_{0}-\frac{x_{0}y_{0}}{x_{0}+dx}\\<br>        \\[1mm]<br>        dy&amp;&#x3D;\frac{x_{0}y_{0}+dxy_{0}-x_{0}y_{0}}{x_{0}+dx}<br>    \end{aligned}<br>\end{equation*}<br>$$</p>
+<h3 id="dy-without-fee"><a href="#dy-without-fee" class="headerlink" title="$dy$ without fee"></a>$dy$ without fee</h3><p>$$dy&#x3D;\frac{dxy_{0}}{x_{0}+dx}$$</p>
+<h3 id="dx-without-fee"><a href="#dx-without-fee" class="headerlink" title="$dx$ without fee"></a>$dx$ without fee</h3><p>$$dx&#x3D;\frac{x_{0}dy}{y_{0}-dy}$$</p>
+<h2 id="Swap-fee"><a href="#Swap-fee" class="headerlink" title="Swap fee"></a>Swap fee</h2><p>Swap fee charged on token in</p>
+<p>$$0{\le}f{\le}1$$</p>
+<p>swap fee &#x3D; $fdx$</p>
+<p>$$f&#x3D;0.3\%$$</p>
+<h3 id="dy-with-fee"><a href="#dy-with-fee" class="headerlink" title="$dy$ with fee"></a>$dy$ with fee</h3><p>$dy$ maximum output amount</p>
+<p>$$dy&#x3D;\frac{dx(1-f)y_{0}}{x_{0}+dx(1-f)}$$</p>
+<h3 id="dx-with-fee"><a href="#dx-with-fee" class="headerlink" title="$dx$ with fee"></a>$dx$ with fee</h3><p>$dx$ required input amount</p>
+<p>$$dx&#x3D;\frac{x_{0}dy}{y_{0}-dy}\frac{1}{1-f}$$</p>
+<h2 id="Price"><a href="#Price" class="headerlink" title="Price"></a>Price</h2><h3 id="Spot-price"><a href="#Spot-price" class="headerlink" title="Spot price"></a>Spot price</h3><p>spot price(mid price) &#x3D; current price</p>
+<p>spot price of token $X$ in terms of token $Y$ &#x3D; $\frac{y_{0}}{x_{0}}$</p>
+<h3 id="Execution-price"><a href="#Execution-price" class="headerlink" title="Execution price"></a>Execution price</h3><p>execution price &#x3D; tokens received &#x2F; sent &#x3D; $\frac{-dy}{dx}$ &#x3D; slope of secant line</p>
+<p>$$<br>\begin{equation*}<br>    \begin{aligned}<br>        dy&amp;&#x3D;\frac{dxy_{0}}{x_{0}+dx}\\<br>        \\[1mm]<br>        \frac{-dy}{dx}&amp;&#x3D;\frac{-y_{0}}{x_{0}+dx}{\rightarrow}\frac{-y_{0}}{x_{0}}(dx{\rightarrow}0)<br>    \end{aligned}<br>\end{equation*}<br>$$</p>
+<h3 id="For-small-dx"><a href="#For-small-dx" class="headerlink" title="For small $dx$"></a>For small $dx$</h3><p>$$\frac{dy}{dx}\approx\frac{y_{0}}{x_{0}}$$</p>
+<h2 id="Add-Liquidity"><a href="#Add-Liquidity" class="headerlink" title="Add Liquidity"></a>Add Liquidity</h2><p>How many $dx$ and $dy$ to add</p>
+<p>$$\frac{dy}{dx}&#x3D;\frac{y_{0}}{x_{0}}$$</p>
+<p>Price after add liquidity &#x3D; Price before</p>
+<p>$$\frac{y_{0}+dy}{x_{0}+dx}&#x3D;\frac{y_{0}}{x_{0}}$$</p>
+<h3 id="Pool-shares"><a href="#Pool-shares" class="headerlink" title="Pool shares"></a>Pool shares</h3><p>How many shares to mint</p>
+<p>$S$ &#x3D; shares to mint<br>$T$ &#x3D; total shares<br>$L_{0}$ &#x3D; liquidity before<br>$L_{1}$ &#x3D; liquidity after</p>
+<p>$$S&#x3D;\frac{L_{1}-L_{0}}{L_{0}}T$$</p>
+<p>$$\frac{L_{1}-L_{0}}{L_{0}}&#x3D;\frac{dx}{x_{0}}&#x3D;\frac{dy}{y_{0}}$$</p>
+<p>$$S&#x3D;\frac{dx}{x_{0}}T&#x3D;\frac{dy}{y_{0}}T$$</p>
+<h3 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h3><p>$$\frac{L_{1}-L_{0}}{L_{0}}&#x3D;\frac{dx}{x_{0}}&#x3D;\frac{dy}{y_{0}}$$</p>
+<p>Define a function to measure pool value $f(x,y){\rightarrow}L$</p>
+<p>$$f(x,y)&#x3D;\sqrt{xy}$$</p>
+<p>(or $f(x,y)&#x3D;2x$ or $f(x,y)&#x3D;2y$)</p>
+<p>Same price after liquidity added</p>
+<p>$$\frac{dy}{dx}&#x3D;\frac{y_{0}}{x_{0}}{\rightarrow}dy&#x3D;\frac{y_{0}}{x_{0}}dx$$</p>
+<p>$$xy&#x3D;L^{2}{\rightarrow}\sqrt{xy}&#x3D;L$$</p>
+<p>$$<br>\begin{equation*}<br>    \begin{aligned}<br>        \frac{L_{1}-L_{0}}{L_{0}}&amp;&#x3D;\frac{f(x_{0}+dx,y_{0}+dy)-f(x_{0},y_{0})}{f(x_{0},y_{0})}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{\sqrt{(x_{0}+dx)(y_{0}+dy)}-\sqrt{x_{0}y_{0}}}{\sqrt{x_{0}y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{\sqrt{(x_{0}+dx)(y_{0}+\frac{y_{0}}{x_{0}}dx)}-\sqrt{x_{0}y_{0}}}{\sqrt{x_{0}y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{\sqrt{x_{0}}}{\sqrt{x_{0}}}\frac{\sqrt{(x_{0}+dx)(y_{0}+\frac{y_{0}}{x_{0}}dx)}-\sqrt{x_{0}y_{0}}}{\sqrt{x_{0}y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{\sqrt{(x_{0}+dx)(x_{0}+dx)y_{0}}-x_{0}\sqrt{y_{0}}}{x_{0}\sqrt{y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{(x_{0}+dx)\sqrt{y_{0}}-x_{0}\sqrt{y_{0}}}{x_{0}\sqrt{y_{0}}}&#x3D;\frac{dx}{x_{0}}\\<br>    \end{aligned}<br>\end{equation*}<br>$$</p>
+<h3 id="Proof-2x"><a href="#Proof-2x" class="headerlink" title="Proof $2x$"></a>Proof $2x$</h3><p>$f(x,y)&#x3D;2x$ $&#x3D;$ value of pool in token $x$</p>
+<p>$\frac{x}{y}$ &#x3D; spot price of $y$ in terms of $x$</p>
+<p>$$f(x_{0},y_{0}) &#x3D; x_{0}+\frac{x_{0}}{y_{0}}y_{0}&#x3D;2x_{0}$$</p>
+<p>$\frac{x_{0}}{y_{0}}y_{0}$ &#x3D; value of $y_{0}$ in terms of $x$</p>
+<p>$$<br>\begin{equation*}<br>    \begin{aligned}<br>        \frac{L_{1}-L_{0}}{L_{0}}&amp;&#x3D;\frac{f(x_{0}+dx,y_{0}+dy)-f(x_{0},y_{0})}{f(x_{0},y_{0})}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{2(x_{0}+dx)-2x_{0}}{2x_{0}}&#x3D;\frac{dx}{x_{0}}\\<br>    \end{aligned}<br>\end{equation*}<br>$$</p>
+<h2 id="Remove-Liquidity"><a href="#Remove-Liquidity" class="headerlink" title="Remove Liquidity"></a>Remove Liquidity</h2><p>How many $dx$ and $dy$ to withdraw</p>
+<p>$S$ &#x3D; shares to burn<br>$T$ &#x3D; total shares<br>$L_{0}$ &#x3D; liquidity before<br>$L_{1}$ &#x3D; liquidity after</p>
+<p>$$L_{0}-L_{1}&#x3D;\frac{S}{T}L_{0}$$</p>
+<p>$$\frac{L_{0}-L_{1}}{L_{0}}&#x3D;\frac{dx}{x_{0}}&#x3D;\frac{dy}{y_{0}}$$</p>
+<p>$$<br>\begin{equation*}<br>    \begin{aligned}<br>        dx&#x3D;x_{0}\frac{S}{T}\\<br>        \\[1mm]<br>        dy&#x3D;y_{0}\frac{S}{T}<br>    \end{aligned}<br>\end{equation*}<br>$$</p>
+<h3 id="Proof-1"><a href="#Proof-1" class="headerlink" title="Proof"></a>Proof</h3><p>$$\frac{L_{0}-L_{1}}{L_{0}}&#x3D;\frac{dx}{x_{0}}&#x3D;\frac{dy}{y_{0}}$$</p>
+<p>True for all 3 functions to measure pool value $f(x,y){\rightarrow}L$</p>
+<p>$$f(x,y)&#x3D;\sqrt{xy}$$</p>
+<p>(or $f(x,y)&#x3D;2x$ or $f(x,y)&#x3D;2y$)</p>
+<p>Same price after liquidity added</p>
+<p>$$\frac{dy}{dx}&#x3D;\frac{y_{0}}{x_{0}}{\rightarrow}dy&#x3D;\frac{y_{0}}{x_{0}}dx$$</p>
+<p>Use $f(x,y)&#x3D;\sqrt{xy}$</p>
+<p>$$<br>\begin{equation*}<br>    \begin{aligned}<br>        \frac{L_{0}-L_{1}}{L_{0}}&amp;&#x3D;\frac{f(x_{0},y_{0})-f(x_{0}-dx,y_{0}-dy)}{f(x_{0},y_{0})}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{\sqrt{x_{0}y_{0}}-\sqrt{(x_{0}-dx)(y_{0}-dy)}}{\sqrt{x_{0}y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{\sqrt{x_{0}y_{0}}-\sqrt{(x_{0}-dx)(y_{0}-\frac{y_{0}}{x_{0}}dx)}}{\sqrt{x_{0}y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{\sqrt{x_{0}}}{\sqrt{x_{0}}}\frac{\sqrt{x_{0}y_{0}}-\sqrt{(x_{0}-dx)(y_{0}-\frac{y_{0}}{x_{0}}dx)}}{\sqrt{x_{0}y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{x_{0}\sqrt{y_{0}}-\sqrt{(x_{0}-dx)(x_{0}-dx)y_{0}}}{x_{0}\sqrt{y_{0}}}\\<br>        \\[1mm]<br>        &amp;&#x3D;\frac{x_{0}\sqrt{y_{0}}-(x_{0}-dx)\sqrt{y_{0}}}{x_{0}\sqrt{y_{0}}}&#x3D;\frac{dx}{x_{0}}\\<br>    \end{aligned}<br>\end{equation*}<br>$$</p>
 ]]></content>
+      <categories>
+        <category>uniswap</category>
+      </categories>
+      <tags>
+        <tag>uniswap</tag>
+      </tags>
   </entry>
 </search>
