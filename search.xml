@@ -66,4 +66,130 @@
         <tag>uniswap</tag>
       </tags>
   </entry>
+  <entry>
+    <title>mysqlnote</title>
+    <url>/2024/11/07/mysqlnote/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>SQL(Structured Query Language)</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dict</title>
+    <url>/2024/12/25/dict/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul>
+<li><code>CLI</code> Command Lind Interface</li>
+<li><code>API</code> Application Programming Interface</li>
+<li><code>GUI</code> Graphical User Interface</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>redisnote</title>
+    <url>/2024/12/25/redisnote/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><ul>
+<li><code>SET</code> key value</li>
+<li><code>SETEX</code> key seconds value</li>
+<li><code>PSETEX</code> key milliseconds value</li>
+<li><code>SETNX</code> key value</li>
+<li><code>GET</code> key</li>
+<li><code>GETSET</code> key value</li>
+<li><code>APPEND</code> key value</li>
+<li><code>SETRANGE</code> key offset value</li>
+<li><code>GETRANGE</code> key start end</li>
+<li><code>INCR/DECR</code> key</li>
+<li><code>INCRBY/DECRBY</code> key increment&#x2F;decrement</li>
+<li><code>INCRBYFLOAT</code> key increment</li>
+<li><code>MSET</code> key value [key value …]</li>
+<li><code>MGET</code> key [key …]</li>
+<li><code>MSETNX</code> key value [key value …]</li>
+<li><code>DEL</code> key [key …]</li>
+<li><code>STRLEN</code> key</li>
+</ul>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><ul>
+<li><code>LPUSH</code> key element [element …]</li>
+<li><code>LPUSHX</code> key element [element …]</li>
+<li><code>RPUSH</code> key element [element …]</li>
+<li><code>RPUSHX</code> key element [element …]</li>
+<li><code>LPOP</code> key [count …]</li>
+<li><code>RPOP</code> key [count …]</li>
+<li><code>RPOPLPUSH</code> source destination</li>
+<li><code>LREM</code> key count element</li>
+<li><code>LLEN</code> key</li>
+<li><code>LINDEX</code> key index</li>
+<li><code>LINSERT</code> key BEFORE|AFTER pivot element</li>
+<li><code>LSET</code> key index element</li>
+<li><code>LRANGE</code> key start stop</li>
+<li><code>LTRIM</code> key start stop</li>
+<li><code>BLPOP</code> key [key …] timeout</li>
+<li><code>BRPOP</code> key [key …] timeout</li>
+<li><code>BRPOPLPUSH</code> source destination timeout</li>
+</ul>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><ul>
+<li><code>SADD</code> key member [member …]</li>
+<li><code>SREM</code> key member [member …]</li>
+<li><code>SMEMBERS</code> key</li>
+<li><code>SISMEMBER</code> key member</li>
+<li><code>SPOP</code> key [count]</li>
+<li><code>SRANDMEMBER</code> key [count]</li>
+<li><code>SMOVE</code> source destination member</li>
+<li><code>SCARD</code> key</li>
+<li><code>SCAN</code> cursor [MATCH pattern] [COUNT count] [TYPE type] </li>
+<li><code>SINTER</code> key [key …]</li>
+<li><code>SINTERSTORE</code> destination key [key …]</li>
+<li><code>SUNION</code> key [key …]</li>
+<li><code>SUNIONSTORE</code> destination key [key …]</li>
+<li><code>SDIFF</code> key [key …]</li>
+<li><code>SDIFFSTORE</code> destination key [key …]</li>
+</ul>
+<h2 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h2><ul>
+<li><code>ZADD</code> key [NX|XX] [GT|LT] [CH] [INCR] score member [score member ..] </li>
+<li><code>ZREM</code> key member [member ..]</li>
+<li><code>ZSCORE</code> key member</li>
+<li><code>ZINCRBY</code> key increment member</li>
+<li><code>ZCARD</code> key</li>
+<li><code>ZCOUNT</code> key min max</li>
+<li><code>ZRANGE</code> key start stop [BYSCORE|BYLEX] [REV] [LIMIT offset count] [WITHSCORES]</li>
+<li><code>ZREVRANGE</code> key start stop [WITHSCORES]</li>
+<li><code>ZRANGEBYSCORE</code> key min max [WITHSCORES] [LIMIT offset count]</li>
+<li><code>ZREVRANGEBYSCORE</code> key min max [WITHSCORES] [LIMIT offset count]</li>
+<li><code>ZRANK</code> key member</li>
+<li><code>ZREVRANK</code> key member</li>
+<li><code>ZREMRANGEBYRANK</code> key start stop</li>
+<li><code>ZREMRANGEBYSCORE</code> key min max</li>
+<li><code>ZREMRANGEBYLEX</code> key min max</li>
+<li><code>ZRANGEBYLEX</code> key min max [LIMIT offset count]</li>
+<li><code>ZLEXCOUNT</code> key min max</li>
+<li><code>ZSCAN</code> cursor [MATCH pattern] [COUNT count] [TYPE type]</li>
+<li><code>ZUNIONSTORE</code> destination numkeys key [key …]</li>
+<li><code>ZINTERSTORE</code> destination numkeys key [key …]</li>
+</ul>
+<h2 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h2><ul>
+<li><code>HSET</code> key field value [field value …]</li>
+<li><code>HSETNX</code> key field value</li>
+<li><code>HGET</code> key field</li>
+<li><code>HEXISTS</code> key field</li>
+<li><code>HDEL</code> key field [field …]</li>
+<li><code>HSTRLEN</code> key field</li>
+<li><code>HINCRBY</code> key field increment</li>
+<li><code>HINCRBYFLOAT</code> key field increment</li>
+<li><code>HMSET</code> key field value [field value …]</li>
+<li><code>HMGET</code> key field [field …]</li>
+<li><code>HKEYS</code> key</li>
+<li><code>HVALS</code> key</li>
+<li><code>HGETALL</code> key</li>
+<li><code>HSCAN</code> key cursor [MATCH pattern] [COUNT count]</li>
+</ul>
+]]></content>
+      <categories>
+        <category>redis</category>
+      </categories>
+      <tags>
+        <tag>redis</tag>
+      </tags>
+  </entry>
 </search>
